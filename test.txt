@@ -1,6 +1,6 @@
 aaa
 bbb
-ccczzzz
-
-test.txt
-11111111
+ccc
+ddd
+eee
+zzzz
