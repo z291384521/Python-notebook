@@ -1,6 +1,0 @@
-aaa
-bbb
-ccczzzz
-
-test.txt
-11111111
