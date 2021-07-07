@@ -25,7 +25,7 @@ try:
         #改变文件的大小写
         for f in files:
             filespath = os.path.join(root, f)
-            print(filespath)
+            #print(filespath)
             fileslowerpath = os.path.join(root, f.lower())
             os.rename(filespath,fileslowerpath)
         #改变目录的大小写
