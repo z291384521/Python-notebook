@@ -17,8 +17,8 @@ print('''
 　　＞―r￣￣`ｰ―＿
   ''')
 path=input('要改变的位置')
-if len(path) ==0 :
-    path=print(os.path.dirname(sys.executable))
+if len(path) == 0 :
+    path=os.path.dirname(sys.executable)
 print("要改变的目录为 %s" % path)
 try:
     for root, dirs, files in os.walk(path):
