@@ -1,6 +1,6 @@
 # 1. 打开
-file_read = open("README")
-file_write = open("REAMDE[复件]", "w")
+file_read = open("test.txt")
+file_write = open("test.txt", "w")
 
 # 2. 读、写
 while True:
