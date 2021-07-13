@@ -11,13 +11,13 @@ def work1():
         print("----work1---")
         #sleep是把线程变成堵塞状态
         gr2.switch()
-        time.sleep(0.5)
+        time.sleep(5)
 
 def work2():
     while True:
         print("----work2---")
         gr1.switch()
-        time.sleep(0.5)
+        time.sleep(5)
 
 gr1 = greenlet(work1)
 gr2 = greenlet(work2)
