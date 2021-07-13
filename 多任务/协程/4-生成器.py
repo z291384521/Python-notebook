@@ -32,10 +32,12 @@ def fib(n):
         current +=1
         print(num)
         yield num
-    return 'done'
+    return 'done' 
 F = fib(5)
-next(F)
+#返回值为yield返回的值 print(num)
+num1 =next(F)
 #不能够写在第一位 不然会报错can't send non-None value to a just-started generator
+print(num1)
 F.send("111")
 next(F)
 
