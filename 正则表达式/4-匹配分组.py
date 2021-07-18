@@ -27,6 +27,5 @@ for label in labels:
        #print(ret.group(3))
     else:
         print("%s 不符合要求" % label)
-
 ret = re.match(r"<(?P<name1>\w*)><(?P<name2>\w*)>.*</(?P=name2)></(?P=name1)>", "<html><h1>www.itcast.cn</h1></html>")
 print(ret.group("name1"))
