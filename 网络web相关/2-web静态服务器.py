@@ -41,8 +41,7 @@ def handle_client(client_socket):
         client_socket.send(response_headers.encode('utf-8'))
         # 再发送body
         client_socket.send(response_body)
-        client_socket.close()
-
+        client_socket.close()   
     pass   
     
 def main():

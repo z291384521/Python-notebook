@@ -1,6 +1,4 @@
 import socket
-
-
 def service_client(new_socket):
     """为这个客户端返回数据"""
 
@@ -19,9 +17,7 @@ def service_client(new_socket):
     new_socket.send(response.encode("utf-8"))
 
     # 关闭套接字
-    new_socket.close()
-    
-
+    new_socket.close()   
 def main():
     """用来完成整体的控制"""
     # 1. 创建套接字
