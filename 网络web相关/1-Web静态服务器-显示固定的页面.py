@@ -1,6 +1,4 @@
 import socket
-
-
 def service_client(new_socket):
     """为这个客户端返回数据"""
 
@@ -19,14 +17,15 @@ def service_client(new_socket):
     new_socket.send(response.encode("utf-8"))
 
     # 关闭套接字
-    new_socket.close()
-    
-
+    new_socket.close()   
 def main():
     """用来完成整体的控制"""
     # 1. 创建套接字
     tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+    #为啥客服端先发送 关闭请求 (先发的会延迟几分钟之后)
+    # 设置当服务器先close 即服务器端4次挥手之后资源能够立即释放，(服务端没有相应时间)
+    # 这样就保证了，下次运行程序时 可以立即绑定7788端口
+    tcp_server_socket(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # 2. 绑定
     tcp_server_socket.bind(("", 7890))
 
@@ -42,7 +41,5 @@ def main():
 
     # 关闭监听套接字
     tcp_server_socket.close()
-
-
 if __name__ == "__main__":
     main()
