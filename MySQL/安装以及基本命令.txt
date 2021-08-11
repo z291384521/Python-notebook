@@ -1,4 +1,5 @@
-root@localhost: R1oPu&2!oxzw
+root@localhost: zrq291384521
+zrq291384521
 net start mysql启动MySQL的服务了。
 通过命令net stop mysql停止服务。
 通过命令sc delete MySQL/mysqld -remove卸载 MySQL 服务
