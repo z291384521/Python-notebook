@@ -1,5 +1,17 @@
 {
 	"fileAndRule":[
+        {
+            "fileMainName":"npc",
+            "rule":{
+                "0-":10
+            }
+        },  
+        {
+            "fileMainName":"npc1",
+            "rule":{
+                "0-":10
+            }
+        },
 		{
             "fileMainName":"humeffect",
             "rule":{

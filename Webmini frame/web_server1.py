@@ -3,7 +3,7 @@ import socket
 import re
 import multiprocessing
 import time
-import mini_frame
+import mini_frame1
 
 class WSGIServer(object):
     def __init__(self):
@@ -55,18 +55,27 @@ class WSGIServer(object):
                 # 将response body发送给浏览器
                 new_socket.send(html_content)
         else:
-            # 2.2 如果是以.py结尾，那么就认为是动态资源的请求
-            header = "HTTP/1.1 200 OK\r\n"
+          # 2.2 如果是以.py结尾，那么就认为是动态资源的请求
+            env = dict()
+            env = dict()  # 这个字典中存放的是web服务器要传递给 web框架的数据信息
+            env['PATH_INFO'] = file_name
+            # {"PATH_INFO": "/index.py"}
+            body = mini_frame1.application(env, self.set_response_header)
+            header = "HTTP/1.1 %s\r\n" % self.status
+            for temp in self.headers:
+                header += "%s:%s\r\n" % (temp[0], temp[1])
+
             header += "\r\n"
-            body = mini_frame.application(file_name)
 
             response = header+body
             # 发送response给浏览器
             new_socket.send(response.encode("utf-8"))
-
-
         # 关闭套接
         new_socket.close()
+    def set_response_header(self, status, headers):
+        self.status = status
+        self.headers = [("server", "mini_web v8.8")]
+        self.headers += headers
 
     def run_forever(self):
 
