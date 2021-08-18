@@ -32,13 +32,29 @@ def f(a,b,x):
 #方案二 缺省参数
 def f1(x,a=1,b=1):
     return a*x+b
-
-
+#方案三 面向对象垃圾版
+class tool:
+    def __init__(self,a,b):
+        self.a =a
+        self.b =b
+def f2(obj,x):
+    return obj.a*x+obj.b
+t1 = tool(2,3)
+print(f2(t1,2))
+#面向对象牛逼版
+class tool1:
+    def __init__(self,a,b):
+        self.a =a
+        self.b =b
+    def __call__(self, x) :
+        return print(self.a*x+self.b)
+t2 = tool1(2,3)
+t2(5)
+#方案四 闭包放处理
 def fun1(a,b):
     def fun2(x):
         return x*a+b
     return fun2
-
 Y1 = fun1(2,1)
 print(Y1(1))
 print(Y1(2))
