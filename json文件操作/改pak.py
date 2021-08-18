@@ -1,5 +1,5 @@
-from os import write
 import re
+import os
 newpak=open("33333.txt",'w',encoding='utf-8')
 with open("pak.txt", 'r', encoding="utf-8-sig") as load_r:
     line = load_r.readline()
