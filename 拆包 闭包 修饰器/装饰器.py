@@ -22,3 +22,9 @@ ret()
 #这样写就可以覆盖写
 test1 = set_func(test1)
 test1()
+
+#简单点的写法
+@set_func
+def test2():
+    print("test2")
+test2()
