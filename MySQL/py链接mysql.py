@@ -3,7 +3,7 @@ from pymysql import *
 
 def main():
     # 创建Connection连接
-    conn = connect(host='localhost',port=3306,database='jing_dong',user='root',password='mysql',charset='utf8')
+    conn = connect(host='localhost',port=3306,database='jing_dong',user='root',password='123456',charset='utf8')
     # 获得Cursor对象
     cs1 = conn.cursor()
     # 执行insert语句，并返回受影响的行数：添加一条数据
