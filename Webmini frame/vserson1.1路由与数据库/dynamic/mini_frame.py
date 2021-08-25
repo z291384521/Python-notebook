@@ -1,5 +1,4 @@
 import re
-from pymysql import connect
 
 """
 URL_FUNC_DICT = {
@@ -20,30 +19,11 @@ def route(url):
         return call_func
     return set_func
 
-
-@route("/index.html")
-def index():
-    with open("./templates/index.html",encoding='utf-8') as f:
-        content = f.read()
-    # 创建Connection连接
-    conn = connect(host='localhost',port=3306,user='root',password='123456',database='stock_db',charset='utf8')
-    cs = conn.cursor()
-    cs.execute("select * from info")
-    stock_infos = cs.fetchall()
-    cs.close()
-    conn.close()
-    content = re.sub(r"\{%content%\}", str(stock_infos), content)    
-    return content
-@route("/center.html")
-def center():
-    with open("./templates/center.html",encoding='utf-8') as f:
-        content = f.read()
-
-    my_stock_info = "这里是从mysql查询出来的数据。。。"
-
-    content = re.sub(r"\{%content%\}", my_stock_info, content)
-
-    return content
+def add_focus(ret):
+        # 1. 获取股票代码
+    stock_code = ret.group(1)
+    print(stock_code)
+    return "add  ok ...."
 
 
 def application(env, start_response):
@@ -62,15 +42,19 @@ def application(env, start_response):
     """
 
     try:
-        # func = URL_FUNC_DICT[file_name]
-        # return func()
-        return URL_FUNC_DICT[file_name]()
+        for url, func in URL_FUNC_DICT.items():
+            # {
+            #   r"/index.html":index,
+            #   r"/center.html":center,
+            #   r"/add/\d+\.html":add_focus
+            # }
+            ret = re.match(url, file_name)
+            if ret:
+                return func()
+        else:
+            return "请求的url(%s)没有对应的函数...." % file_name
+
+
     except Exception as ret:
         return "产生了异常：%s" % str(ret)
-
-
-
-
-
-
 
