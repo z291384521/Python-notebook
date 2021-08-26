@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型</title>
+    <style type="text/css">
+        .box {
+            /* 设置盒子的宽度，此宽度是指盒子内容的宽度，不是盒子整体宽度(难点) */
+            width: 200px;
+            /* 设置盒子的高度，此高度是指盒子内容的高度，不是盒子整体高度(难点) */
+            height: 200px;
+            background-color: gold;
+
+            /* 设置边框*/
+            border-top-color: red;
+            /* 设置顶部边框颜色为红色 */
+            border-top-width: 10px;
+            /* 设置顶部边框粗细为10px */
+            /*  实线： solid  虚线：dashed  点线：dotted   */
+            border-top-style: solid;
+            /* 上面三句可以简写成一句：
+            border-top:10px solid red;
+            四个边如果设置一样，可以将四个边的设置合并成一句
+            border:10px solid red;
+             */
+            border-left-color: blue;
+            border-left-width: 20px;
+            border-left-style: solid;
+            /* 设置内间距padding */
+            padding-top: 20px;
+            /* 设置顶部内间距20px */
+            padding-left: 30px;
+            /* 设置左边内间距30px */
+            padding-right: 40px;
+            /* 设置右边内间距40px */
+            padding-bottom: 50px;
+            /* 设置底部内间距50px */
+            /*  
+			分别设置盒子的 上边  右边  下边  左边 的padding值			 
+			padding:20px 80px 100px 40px;
+ 			*/
+            /* 分别设置盒子的 上边  左右  下边的padding值 
+ 			padding:20px 80px 100px;*/
+            /* 分别设置盒子的 上下  左右  的padding值 
+		     padding:20px 80px;*/
+           /* 同时设置四个边的padding是20px*/
+            /* padding:20px; */
+            /*
+            设置外间距margin
+            外边距的设置方法和padding的设置方法相同，将上面设置项中的'padding'换成'margin'就是外边距设置方法。 
+             */
+            margin:100px 0 0 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        元素在页面中显示成一个方块，类似一个盒子，CSS盒子模型就是使用现实中盒子来做比喻，帮助我们设置元素对应的样式。元素在页面中显示成一个方块，类似一个盒子，CSS盒子模型就是使用现实中盒子来做比喻，帮助我们设置元素对应的样
+    </div>
+</body>
+
+</html>
