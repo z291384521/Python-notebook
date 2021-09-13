@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /*  去掉body默认的margin值	 */
+    body {
+        margin: 0;
+    }
+
+    .box {
+        width: 202px;
+        height: 156px;
+        background-color: pink;
+        margin: 50px auto 0;
+    }
+
+    /*margin负值让元素位移及边框合并 
+         */
+    .box div {
+        width: 200px;
+        height: 30px;
+        border: 1px solid green;
+        background-color: gold;
+        margin-top: -1px;
+
+        /* border-bottom:0px; */
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="last"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*
+        margin-top 塌陷
+        在两个盒子嵌套时候，内部的盒子设置的margin-top会加到外边的盒子上，导致内部的盒子margin-top设置失败，解决方法如下：
+        1、外部盒子设置一个边框
+        2、外部盒子设置 overflow:hidden
+        3、使用伪元素类： 
+         */
+        /* 第三种解决塌陷的方法   */
+        .clearfix:before {
+            content: "";
+            display: table;
+        }
+
+        .con {
+            width: 300px;
+            height: 300px;
+            background-color: gold;
+            /* border:1px solid #000; 第一种解决塌陷的方法	 */
+            /* overflow:hidden; 第二章解决塌陷的方法 */
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            background-color: green;
+            margin-top: 100px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con clearfix">
+        <div class="box"></div>
+    </div>
+</body>
+
+</html>
