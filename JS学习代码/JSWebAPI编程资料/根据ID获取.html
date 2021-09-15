@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        语法：document.getElementById(id)
+        作用：根据ID获取元素对象
+        参数：id值，区分大小写的字符串
+        返回值：元素对象 或 null
+
+
+        语法：document.getElementsByTagName('标签名') 或者 element.getElementsByTagName('标签名') 
+        作用：根据标签名获取元素对象
+        参数：标签名
+        返回值：元素对象集合（伪数组，数组元素是元素对象）
+        注意：getElementsByTagName()获取到是动态集合，
+        即：当页面增加了标签，这个集合中也就增加了元素。
+     -->
+</head>
+<body>
+    <div id="time">2019-9-9</div>
+    <ul>
+        <li>知否知否，应是等你好久11</li>
+        <li>知否知否，应是等你好久22</li>
+        <li>知否知否，应是等你好久33</li>
+        <li>知否知否，应是等你好久44</li>
+        <li>知否知否，应是等你好久55</li>
+    </ul>
+    <ol id="nav">
+        <li>生僻字</li>
+        <li>生僻字</li>
+        <li>生僻字</li>
+        <li>生僻字</li>
+        <li>生僻字</li>
+    </ol>
+    <script>
+        // 因为我们文档页面从上往下加载，所以先得有标签 所以我们script写到标签的下面
+        var timer = document.getElementById('time');
+        console.log(timer.innerHTML)
+        var date = new Date();
+         console.log(date.getFullYear());
+         // 月份 返回的月份小1个月   记得月份+1 呦
+         console.log(date.getMonth() + 1);
+         // 返回的是 几号
+         console.log(date.getDate());
+         // 3  周一返回的是 1 周六返回的是 6 但是 周日返回的是 0
+         console.log(date.getDay());
+        // 我们写一个 2019年 5月 1日 星期三
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var dates = date.getDate();
+        var arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var day = date.getDay();
+        nowdata='今天是：' + year + '年' + month + '月' + dates + '日 ' + arr[day];
+        timer.innerText = nowdata
+        console.log(timer);
+        console.log(typeof timer);
+        //重要重要
+        //重要重要
+        //重要重要
+        //重要重要
+        //重要重要
+        // console.dir 打印我们返回的元素对象 更好的查看里面的属性和方法
+        console.dir(timer);
+
+        var lis = document.getElementsByTagName('li');
+        for (var i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+
+        // 3. element.getElementsByTagName()  可以得到这个元素里面的某些标签
+        var nav = document.getElementById('nav'); // 这个获得nav 元素
+        var navLis = nav.getElementsByTagName('li');
+        console.log(navLis);
+        // 3. 如果页面中只有一个li 返回的还是伪数组的形式 
+        // 4. 如果页面中没有这个元素 返回的是空的伪数组的形式
+        // 5. element.getElementsByTagName('标签名'); 父元素必须是指定的单个元素
+         var ol = document.getElementsByTagName('ol'); // [ol]
+         console.log(ol[0].getElementsByTagName('li'));
+    </script>
+</body>
+</html>
