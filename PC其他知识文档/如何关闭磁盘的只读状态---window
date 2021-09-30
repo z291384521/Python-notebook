@@ -1,0 +1,19 @@
+磁盘无法创建文件或文件夹
+
+cmd中执行diskpart命令。diskpart其实是windows命令行下的一个磁盘分区管理工具
+本身diskpart是个程序，它有很多命令的参数，用户可以通过help命令来查看帮助
+
+list disk
+目的是查看只读磁盘的磁盘序号。最左侧的就是磁盘的序号。可以根据磁盘的大小来判断。
+select disk 2
+即将2号磁盘作为操作对象了。
+attributes disk 
+命令即可查看基本的磁盘属性
+
+只读属性，从而去掉写保
+attributes disk clear readonly
+命令说明：
+attributes是属性的意思，是diskpart的子命令
+clear:清除某个属性，对应的是set（设置某个属性）
+readonly:只读属性。
+执行后就可以将只读属性去掉，写保护就去掉了。
