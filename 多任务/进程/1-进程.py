@@ -1,5 +1,6 @@
 from multiprocessing import Process
 import time
+import os
 
 
 '''
@@ -24,7 +25,7 @@ pid：当前进程的pid（进程号）
 
 def run_pro(name):
     while True:
-        print("------打印传入的值 %s ------" % name)
+        print("------打印传入的值 %s pid=%d ------" % (name,os.getpid()))
         time.sleep(1)
 
 if __name__=='__main__':
