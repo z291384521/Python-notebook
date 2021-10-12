@@ -29,3 +29,8 @@ class Foo(object, metaclass=upper_attr):
     def test():
         print("11111")
 f = Foo()
+#hasattr() 函数用于判断对象是否包含对应的属性。
+print(hasattr(Foo, 'bar'))
+print(hasattr(Foo, 'BAR'))
+
+print(f.BAR)
