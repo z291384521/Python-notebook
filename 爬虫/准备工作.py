@@ -29,12 +29,4 @@
 
 
 
-#发送get请求
-#response = requests.get("http://www.baidu.com/")
-# https://movie.douban.com/j/search_subjects?
-# type: movie
-# tag: 热门
-# page_limit: 50
-# page_start: 0
-
 

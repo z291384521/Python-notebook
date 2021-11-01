@@ -8,5 +8,4 @@ proxies = {
  
 response = requests.get("http://www.baidu.com", proxies = proxies)
 print(response.text)
-
 #也可以通过本地环境变量 HTTP_PROXY 和 HTTPS_PROXY 来配置代理：
