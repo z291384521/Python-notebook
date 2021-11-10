@@ -462,7 +462,6 @@ newdata ={}
 for i in provinces:
     newdata[i]=[]
 #遍历旧数组
-
 for i in data:
     #如果是内蒙古 黑龙江
     if(i[1].startswith("内蒙古") or i[1].startswith("黑龙江")):
@@ -475,5 +474,4 @@ for i in data:
         newdata[my_provinces].append(i)
     else:
         print("没有匹配上"+i)
-
 print(newdata)
