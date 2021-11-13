@@ -1,16 +1,16 @@
-from PyQt5.QtWidgets import *
+# 0. 导入需要的包和模块
 import sys
-
+from PyQt5.QtWidgets import *
 class Window(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("QLabel的学习")
+        self.setWindowTitle("没名字报错")
         self.resize(500, 500)
         self.setup_ui()
 
     def setup_ui(self):
         label = QLabel(self)
-        label.setText("Sz")
+        label.setText()
 if __name__ == '__main__':    
     app = QApplication(sys.argv)
     window = Window()

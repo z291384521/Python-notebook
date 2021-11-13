@@ -65,3 +65,6 @@ if __name__ == '__main__':
     #检测整个程序所接收到的用户的交互信息
     print(app.exec_())
     sys.exit(app.exec_())
+
+
+    
