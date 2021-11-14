@@ -1,6 +1,9 @@
 # 0. 导入需要的包和模块
-from PyQt5.Qt import * 
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import *
 import sys
+
+from PyQt5.QtCore import QObject
 
 class MyObject(QObject):
     def timerEvent(self, evt):
@@ -31,7 +34,7 @@ class MyLabel(QLabel):
             self.killTimer(self.timer_id)
 
 
-class MyWidget(QWidget):
+class MyWidget(QtWidgets):
     def timerEvent(self, *args, **kwargs):
         current_w = self.width()
         current_h = self.height()
