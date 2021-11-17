@@ -1,5 +1,8 @@
 from PyQt5.QtWidgets import *
 import sys
+'''
+
+'''
 
 # 1. 创建一个应用程序对象
 app = QApplication(sys.argv)
@@ -14,7 +17,9 @@ label.setText("社会我顺哥, 人狠话不多")
 label.resize(300, 300)
 label.setStyleSheet("background-color: cyan;")
 print(label.getContentsMargins())
-#label.setContentsMargins(100, 00, 0, 100)
+#设置类容区域
+# setContentsMargins(左, 上, 右, 下)
+label.setContentsMargins(100, 00, 100,0)
 
 # 2.3 展示控件
 window.show()
