@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+# Code By ImportThis 2076966127
+# Form implementation generated from reading ui file '文件拖放.ui'
+# Code By ImportThis 2076966127
+# Created by: PyQt5 UI code generator 5.14.2
+# Code By ImportThis 2076966127
+# WARNING! All changes made in this file will be lost!
 from os import system
 from PyQt5 import QtCore, QtWidgets
 import winreg, subprocess, os
@@ -39,8 +46,6 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.pushButton.setText(_translate("Form", "打开"))
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
