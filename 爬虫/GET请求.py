@@ -1,4 +1,5 @@
 import requests
+from requests.api import request
 #发送get请求
 #response = requests.get("http://www.baidu.com/")
 # https://movie.douban.com/j/search_subjects?
@@ -39,3 +40,4 @@ print(respones.encoding)
 # print response.encoding
 # # 查看响应码
 # print response.status_code
+# respones.cookies响应的cookie
