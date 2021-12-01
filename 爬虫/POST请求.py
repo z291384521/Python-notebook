@@ -3,7 +3,12 @@ import hashlib
 import time
 import random
 import json
-
+#2 post 数据源
+# 1 固定值  
+# 2 输入值
+# 3 预设值-静态文件
+# 4 预设值-发请求
+# 5 在客户端生成的 
 formdata={'i': '我的世界',
 'from':'AUTO',
 'to': 'AUTO',
@@ -43,3 +48,5 @@ def get_md5(value):
     md5 = hashlib.md5()
     md5.update(value.encode('utf-8'))
     return md5.hexdigest()
+
+#
