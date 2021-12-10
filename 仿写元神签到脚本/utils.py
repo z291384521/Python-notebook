@@ -13,5 +13,5 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S')
 log = logger = logging
-#os.path.abspath() 当前目录路径
+#os.path.abspath() 当前目录路径f
 _localedir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
