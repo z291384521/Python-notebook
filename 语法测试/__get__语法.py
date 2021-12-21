@@ -14,6 +14,8 @@
 并且这个实例是另外一个类的类属性(注意一定是类属性，
 通过self的方式产生就不属于__get__范畴了)。
 
+简而言之就是 get走 类方法获取类方法时候
+
 """
 class TestDes:
     def __get__(self, instance, owner):
@@ -53,4 +55,9 @@ class TestMain:
 if __name__ == '__main__':
     t = TestMain()
     print(t.des)
-    # print(TestMain.des) #很明显这里会报错
+
+'''
+<__main__.TestDes object at 0x0000023BEB905D48>
+'''
+#他不会走get方法 走的是实例方法
+
