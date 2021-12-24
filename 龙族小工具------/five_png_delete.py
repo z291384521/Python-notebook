@@ -4,6 +4,7 @@ import sys
 import multiprocessing
 from multiprocessing import Process, Pool
 import  time
+import mul_process_package
 
 def remove_png(file_name, root_path):
     name_f = file_name.split('.')[0]
@@ -64,6 +65,7 @@ def ini_log(logger,ospath):
 
 
 if __name__ == '__main__':
+    multiprocessing.freeze_support()
     logger = None
 
     path = input('要改变的位置 没有选择为当前文件夹下面')
@@ -73,9 +75,9 @@ if __name__ == '__main__':
     ini_log(logger,os.path.dirname(sys.executable))
     print("要改变的目录为 %s" % path)
     #输入要开启的进程
-    while True:
-      pool_num=input('请输入开启的进程池')
-      if pool_num.isdigit():break
+
+    pool_num=input('请输入开启的进程池')
+
     pool_num = int(pool_num)
     po=Pool(pool_num)
     for root, dirs, files in os.walk(path):
@@ -84,3 +86,4 @@ if __name__ == '__main__':
 
     po.close()  # 关闭进程池，防止将任何其他任务提交到池中。需要在join之前调用，否则会报ValueError: Pool is still running错误
     po.join()    # 等待进程池中的所有进程执行完毕
+    print("-----end-----")
