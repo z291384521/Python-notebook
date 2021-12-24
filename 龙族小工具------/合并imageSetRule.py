@@ -14,7 +14,7 @@ with open(old_path,"r",encoding='utf-8', errors='ignore') as load_f:
 #读新新规则文件
 with open(new_path,"r",encoding='utf-8', errors='ignore') as load_f:
     load_new_dict = json.load(load_f)
-print(load_new_dict["data"]["sucai"])
+#print(load_new_dict["data"]["sucai"])
 #循环遍历新规则 data规则
 if( rule_data in load_new_dict.keys()):
     for v_lei,k_lei in load_new_dict[rule_data].items():
