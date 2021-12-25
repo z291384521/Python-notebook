@@ -101,22 +101,85 @@ class griid_manage():
         # 没有的话创建可用空间并且存放
 
         # 先判断可用列表是不是空的如果是空的需要创建可用空间
-        if grid.space_available_list == None:
-            print("可用列表队列没有位置")
-            griid_manage.add_space_available(png_item)
+        id_num=griid_manage.find_space_available(png_item)
+        #找到这个id的空间
+        for i in grid.space_available_list:
+            if i.id==id_num:
+                #可用空间 刚好与图片大小相等
+                if png_item.width == i.width and png_item.height == id_num:
+                    png_item.x=i.x
+                    png_item.y=i.y
 
     @classmethod
-    def add_space_available(cls,png_item):
-        #判断下是不是第一块 第一块直接生成
-        if(grid.space_available_id==0):
-            newspace = space_available(0,png_item.width,png_item.height,0,0)
+    def sorted_space_available(cls):
+        """
+        对可用列表进行排序从小到大
+        :return:
+        """
 
+        def area(space_available_x: space_available, space_available_y: space_available):
+            x = space_available_x.width * space_available_x.height
+            y = space_available_y.width * space_available_y.height
+            if x > y:
+                return 1
+            elif x < y:
+                return -1
+            return 0
 
-        if(all_png_item):
-            #添加到右边代码处理
+        grid.space_available_list.sort(key=functools.cmp_to_key(area))
 
-            newspace = space_available(grid.space_available_id,)
-        pass
+    @classmethod
+    def find_space_available(cls, png_item):
+        """
+        查找空闲位置
+        1遍历整个可以用空间
+        :return:查找到的编号
+        """
+        #先判断列表存不存在
+        if not grid.space_available_liste:
+            return griid_manage.add_space_available(png_item)
+
+        # 先进行排序
+        griid_manage.sorted_space_available()
+        for i in grid.space_available_list:
+            if png_item.width >= i.width and png_item.height >= i.height:
+                print(png_item.name + "找到了位置")
+                return i.id
+        # 遍历没有找到可用位置需要自己创建
+        return griid_manage.add_space_available(png_item)
+
+    @classmethod
+    def add_space_available(cls, png_item):
+        # 判断下是不是第一块 第一块直接生成
+        if grid.space_available_id == 0:
+            newspace = space_available(0, png_item.width, png_item.height, 0, 0)
+            grid.width = png_item.width
+            grid.height = png_item.height
+            grid.space_available_list.append(newspace)
+            grid.space_available_id = +1
+            return 0
+
+        # 不是第一块的话判断是下面还是右边
+        if (all_png_item):
+            # 添加到右边代码处理
+            # ----------
+            #       |  |
+            #       |  |
+            newspace = space_available(grid.space_available_id, png_item.width, grid.height, grid.width, 0)
+            grid.space_available_list.append(newspace)
+            grid.space_available_id = +1
+            return newspace.id
+        else:
+            # 添加到右边代码处理
+            # -----------0
+            # |         |
+            # |         |
+            # 下面为添加的区域
+            # |_________|
+            newspace = space_available(grid.space_available_id, grid.width, png_item.width, 0, grid.height)
+            grid.space_available_list.append(newspace)
+            grid.space_available_id = +1
+            return newspace.id
 
     @classmethod
     def add_right_down(cla):
@@ -126,10 +189,12 @@ class griid_manage():
         false 为添加到下面
         :return:
         """
-        if grid.widths>grid.height:
+        if grid.widths > grid.height:
             return False
         else:
-            return  True
+            return True
+
+
 read_png_info(path)
 all_png_item = list_sort(all_png_item)
 for i in all_png_item:
