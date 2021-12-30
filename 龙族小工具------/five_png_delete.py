@@ -3,18 +3,19 @@ import os
 import sys
 import multiprocessing
 from multiprocessing import Process, Pool
-import  time
+import time
 import mul_process_package
+
 
 def remove_png(file_name, root_path):
     name_f = file_name.split('.')[0]
     type_f = file_name.split('.')[1]
-    if (str.isdigit(name_f) and len(name_f)==5):
-        i = name_f+'.'+type_f
-        fileslowerpath =os.path.join(root_path, i)
-        print('当前进程:%s pid:%d' % (multiprocessing.current_process().name,
-                                  multiprocessing.current_process().pid))
-        print(fileslowerpath)
+    if str.isdigit(name_f) and len(name_f) == 5:
+        i = name_f + '.' + type_f
+        fileslowerpath = os.path.join(root_path, i)
+        # print('当前进程:%s pid:%d' % (multiprocessing.current_process().name,
+        # multiprocessing.current_process().pid))
+        # print(fileslowerpath)
 
         os.remove(fileslowerpath)
 
@@ -35,7 +36,8 @@ def mkdir(path):
         os.makedirs(path)
         return True
 
-def ini_log(logger,ospath):
+
+def ini_log(logger, ospath):
     # 第一步，创建一个logger
     logger = logging.getLogger()
     # Log等级总开关
@@ -63,27 +65,32 @@ def ini_log(logger,ospath):
     logger.addHandler(fh)
 
 
-
 if __name__ == '__main__':
     multiprocessing.freeze_support()
     logger = None
 
-    path = input('要改变的位置 没有选择为当前文件夹下面')
-    #如果不输入当前目录
-    if len(path) == 0 :
-        path=os.path.dirname(sys.executable)
-    ini_log(logger,os.path.dirname(sys.executable))
-    print("要改变的目录为 %s" % path)
+    path = input('选择data 与 graphics 同级目录')
+
+    path = os.path.dirname(sys.executable)
+    data_path=path + '\\data\\'
+    graphics_path = path + '\\graphics\\'
+    # ini_log(logger, os.path.dirname(sys.executable))
+
+    print("要改变的目录为 %s和%s" %(data_path,graphics_path))
     #输入要开启的进程
-
     pool_num=input('请输入开启的进程池')
-
     pool_num = int(pool_num)
     po=Pool(pool_num)
-    for root, dirs, files in os.walk(path):
-        for f in files:
-            po.apply_async(remove_png, args=(f, root,))
+    if os.path.isdir(data_path):
+        for root, dirs, files in os.walk(path):
+            for f in files:
+                po.apply_async(remove_png, args=(f, root,))
 
+    if os.path.isdir(graphics_path):
+        for root, dirs, files in os.walk(path):
+            for f in files:
+                po.apply_async(remove_png, args=(f, root,))
     po.close()  # 关闭进程池，防止将任何其他任务提交到池中。需要在join之前调用，否则会报ValueError: Pool is still running错误
     po.join()    # 等待进程池中的所有进程执行完毕
     print("-----end-----")
+    input("点击任意结束")
