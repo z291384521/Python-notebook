@@ -20,7 +20,7 @@ class png_item:
 
 
 # path=input("请输入要打包的位置")
-path = r"E:\ui"
+path = r"H:\H5ForZG20盛大\laya\assets\gameres\ui"
 all_png_item = []
 
 
@@ -301,4 +301,4 @@ for i in grid.space_available_list:
     im2 = Image.new('RGB', (i.width, i.height), (0, 0, 255))
     im.paste(im2, (i.x, i.y))
 im.show()
-im.save()
+# im.save()
