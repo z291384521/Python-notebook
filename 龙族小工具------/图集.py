@@ -1,8 +1,5 @@
 import functools
 import os
-from io import BytesIO
-
-from PIL import Image
 
 # 图片类
 from PIL import Image,ImageDraw,ImageFont
@@ -266,7 +263,7 @@ class griid_manage():
         else:
             return True
 
-
+#下面为测试代码
 read_png_info(path)
 list_sort(all_png_item)
 griid_manage.init_grid()
