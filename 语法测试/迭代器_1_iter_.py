@@ -1,5 +1,6 @@
-#代理迭代
-#需要自己构建一个自定义对象 里面包含有列表、元组或其他可迭代对象 才能实现
+#定义 __iter__ 表示这个类是一个迭代器（iterator）。它只在迭代开始的时候运行一次
+#返回必须是迭代器
+#接下来就是循环调用 __next__ 直到遇到 raise StopIteration 为止
 class Node:
     def __init__(self, value):
         self._value = value
@@ -14,6 +15,7 @@ class Node:
     def __iter__(self):
         return iter(self._children)
 
+
 # Example
 if __name__ == '__main__':
     root = Node(0)
@@ -24,3 +26,26 @@ if __name__ == '__main__':
     # Outputs Node(1), Node(2)
     for ch in root:
         print(ch)
+
+
+# 一个小列子
+class Fib:
+    def __init__(self, max):
+        self.max = max
+
+    def __iter__(self):
+        # returnd的对象必须是可以迭代的(有next属性)
+        print('__iter__ called')
+        self.a = 0
+        self.b = 1
+        return self
+
+    def __next__(self):
+        print('__next__ called')
+        fib = self.a
+        if fib > self.max:
+            raise StopIteration
+        self.a, self.b = self.b, self.a + self.b
+        return fib
+for i in Fib(3):
+    print(i)
