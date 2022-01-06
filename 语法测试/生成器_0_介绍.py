@@ -54,3 +54,27 @@ for e in gen_example():
 
 　　（3）function可以被无数次重复调用，而一个generator实例在yield最后一个值 或者return之后就不能继续调用了
 """
+
+#send
+
+def MyGenerator():
+    value = yield 1
+    yield value
+    return None
+"""
+运行过程，
+用next启动了生成器gen，知道到yield 1时返回1。
+
+然后我们再用gen的内部方法send进入gen，而且还带回来一个值“I am Value”。
+这时候，继续执行yield 1后的代码“value=”，把带回来的值“I am Value”赋给value。
+直到遇到yield value，把value返回。
+
+"""
+
+# gen = MyGenerator()
+# print(next(gen))
+# print(gen.send("I am Value"))
+#第一次调用必须send(NONE)启动    或者，第一次要用next启动
+gen=MyGenerator()
+print(gen.send(None))
+# print(gen.send(3))    TypeError: can't send non-None value to a just-started generator

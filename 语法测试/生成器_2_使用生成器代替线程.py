@@ -1,6 +1,8 @@
 from collections import deque
 
-
+"""
+但是关键点在于收集消息的队列。 本质上，调度器在有需要发送的消息时会一直运行着
+"""
 class ActorScheduler:
     def __init__(self):
         self._actors = {}  # Mapping of names to actors
@@ -57,11 +59,11 @@ if __name__ == '__main__':
             sched.send('counter', n - 1)
 
 
-    sched = ActorScheduler()
-    # Create the initial actors
-    sched.new_actor('printer', printer())
-    sched.new_actor('counter', counter(sched))
-
-    # Send an initial message to the counter to initiate
-    sched.send('counter', 10)
-    sched.run()
+    # sched = ActorScheduler()
+    # # Create the initial actors
+    # sched.new_actor('printer', printer())
+    # sched.new_actor('counter', counter(sched))
+    #
+    # # Send an initial message to the counter to initiate
+    # sched.send('counter', 10)
+    # sched.run()
