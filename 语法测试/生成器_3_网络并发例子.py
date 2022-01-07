@@ -1,26 +1,2 @@
-from collections import deque
-#select主要用于socket通信当中，能监视我们需要的文件描述变化
-from select import select
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    from socket import socket, AF_INET, SOCK_STREAM
-    import time
-    def readline(sock):
-        chars = []
-        while True:
-            c = yield sock.recv(1)
-            if not c:
-                break
-            chars.append(c)
-            if c == b'\n':
-                break
-        return b''.join(chars)
+#网址在
+#https://python3-cookbook.readthedocs.io/zh_CN/latest/c12/p12_using_generators_as_alternative_to_threads.html?highlight=%E7%94%9F%E6%88%90%E5%99%A8
