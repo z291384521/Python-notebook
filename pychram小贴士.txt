@@ -1,0 +1,3 @@
+To compare any two files or folders, select them in the Project tool window and press Ctrl+D.
+To join two lines into one and remove unnecessary spaces （没有用的空格）Ctrl+Shift+J.
+
