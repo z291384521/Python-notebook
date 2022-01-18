@@ -17,4 +17,28 @@ class Fun:
         self.__dict__[key] = value
 
 
-fun = Fun()
+# fun = Fun()
+
+
+class A(object):
+    def __init__(self, value):
+        print("into __init__")
+        self.value = value
+
+    def __setattr__(self, name, value):
+        print("into __setattr__")
+        if value == 10:
+            print("from __init__")
+        print(name, value)
+        super.__setattr__(self, name, value)
+
+
+a = A(10)
+# into __init__
+# into __setattr__
+# from __init__
+# 10
+a.value1 = 100
+# into __setattr__
+print(a.value1)
+# 100

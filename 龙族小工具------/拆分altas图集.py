@@ -4,8 +4,9 @@ import os.path
 import shutil
 import json
 from PIL import Image
-# tuji_png_path = input('input tuji_png_path:')
-tuji_png_path  =r"H:\python虚拟环境\Python-notebook\测试文件\stateitem1\000269.png"
+
+tuji_png_path = input('输入通图集位置 png与atlas再一起')
+# tuji_png_path  =r"H:\python虚拟环境\Python-notebook\测试文件\stateitem1\000269.png"
 if tuji_png_path.find('.png') != -1:
  tuji_png_path = tuji_png_path[:-4]
  print(tuji_png_path)
