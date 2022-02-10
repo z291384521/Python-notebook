@@ -61,6 +61,9 @@ def MyGenerator():
     value = yield 1
     yield value
     return None
+# gen = MyGenerator()
+# print(next(gen))
+# print(gen.send("I am Value"))
 """
 运行过程，
 用next启动了生成器gen，知道到yield 1时返回1。
@@ -71,9 +74,7 @@ def MyGenerator():
 
 """
 
-# gen = MyGenerator()
-# print(next(gen))
-# print(gen.send("I am Value"))
+
 #第一次调用必须send(NONE)启动    或者，第一次要用next启动
 gen=MyGenerator()
 print(gen.send(None))

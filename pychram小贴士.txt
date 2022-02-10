@@ -1,3 +1,7 @@
 To compare any two files or folders, select them in the Project tool window and press Ctrl+D.
 To join two lines into one and remove unnecessary spaces （没有用的空格）Ctrl+Shift+J.
 
+
+You can use code completion Ctrl+空格 for completing words in text files and in comments. 
+The completion window includes words that are already present in the current file.
+使用ctrl+空格 来补全单词
