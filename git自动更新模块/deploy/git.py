@@ -5,7 +5,7 @@
 #@Date         : 2022-02-11 15:21:24
 #@FilePath     : \Python-notebook\git自动更新模块\deploy\git.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-11 17:43:05
+#@LastEditTime : 2022-02-11 19:29:24
 
 
 from config import DeployConfig
@@ -70,5 +70,9 @@ class GitManager(DeployConfig):
             proxy=self.config['GitProxy'],
             keep_changes=self.bool('KeepLocalChanges')
         )
-GitManager_updata = GitManager()
-GitManager_updata.git_install()
+
+
+
+
+a =os.system('"C:/Program Files/Git/mingw64/bin/git.exe" config --local --unset http.proxy')
+print(a)
