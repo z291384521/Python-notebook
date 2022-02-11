@@ -5,13 +5,12 @@
 #@Date         : 2022-02-10 16:37:40
 #@FilePath     : \Python-notebook\git自动更新模块\deploy\utils.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-10 17:59:45
-from cgitb import text
+#@LastEditTime : 2022-02-11 09:49:52
 import re
 import os
 
 DEPLOY_CONFIG = r"git自动更新模块\config\deploy.yaml"
-DEPLOY_TEMPLATE = r"git自动更新模块\config\deploy_template.yaml"
+DEPLOY_TEMPLATE = r"git自动更新模块\config\deploy copy.yaml"
 class cached_property:
     """
     这个属性有缓存了不会再次调用方法体直接给返回值
@@ -62,4 +61,31 @@ def poor_yaml_write(data,file,template_file=DEPLOY_TEMPLATE):
     """
     with open(template_file,"r",encoding="utf-8") as f:
         text = f.read().replace('\\','/')
-        for key,value
+        
+    for key,value in data.items():
+        if value == '':
+            value='null'
+        text = re.sub(f'{key}:.*?\n',f'{key}: {value}\n', text)
+
+    with  open(file, 'w', encoding='utf-8') as f:
+        f.write(text)
+        
+def hr1(title):
+    print('=' * 20 + ' ' + title + ' ' + '=' * 20)
+
+
+def hr0(title):
+    middle = '|' + ' ' * 20 + title + ' ' * 20 + '|'
+    border = '+' + '-' * (len(middle) - 2) + '+'
+    print(border)
+    print(middle)
+    print(border)
+
+if __name__ == '__main__':
+
+    data=poor_yaml_read(DEPLOY_CONFIG)
+    data['Repository']='https://github.com/z291384521/Python-notebook.git'
+    print(data)
+    poor_yaml_write(data,DEPLOY_CONFIG,template_file=DEPLOY_TEMPLATE)
+    print(poor_yaml_read(DEPLOY_CONFIG))
+    pass
