@@ -1,0 +1,37 @@
+执行 git config --global core.excludesfile .\.gitignore Git 将把那些文件永远地拒之门外。
+
+stash 可以将当前工作现场保存起来
+需要保留当前工作区的修改，转而去做其他代码的修改；
+
+git stash list  查看stash列表
+git stash ( pop | apply ) [<stash>]  从stash栈中的某一个stash应用到当前工作区中（注：pop在应用完后会删除这个stash，apply则仍然保留）例:git stash apply stash@{0}
+git stash drop [<stash>] 删除指定索引的stash 例:git stash drop stash@{0}
+git stash clear 清空所有保存的stash列表
+git stash save [<message>]] 将当前工作区、暂存区的改动保存到stash栈中
+git stash show [<stash>] 查看某一个stash的文件
+
+
+
+pull --ff-only
+-ff
+ff 意思是 fast-forward, 使用 merge 时，默认会使用 fast-forward 的方式合并代码
+
+如果合并的分支（master）是被合并分支（feature）的上游分支，则合并成功，不会产生 merge log，
+
+如果合并的分支（master）不是被合并分支（feature）的直接上游分支（比如 master 在 checkout 出 feature 分支后，又进行了几次提交），不能使用 fast-forward 的方式合并代码，git 会进行一次三方合并（magic）,如果合并成功，就会产生一个 merge log, 如果有冲突产生，则合并失败，需要解决冲突并 commit 后才能合并.
+
+–no-ff
+如果加上 --no-ff 参数，就是默认使用三方合并的方式合并，就算合并的分支（master）是被合并分支（feature）的上游分支，也会产生一个 merge log
+这种做法的好处是，忠实地记录了实际发生过什么，关注点在真实的提交历史上面
+
+–ff-only
+与 --no-ff 相反，--ff-only 表示只接受 fast-forward 方式的合并，如果不能直接使用 fast-forward 合并，会合并失败并报错
+
+
+log --no-merges -1
+
+//查看合并提交
+git log --merges
+
+//查看非合并提交
+git log --no-merges
