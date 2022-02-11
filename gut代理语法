@@ -1,1 +1,0 @@
-行 git config --global core.excludesfile .\.gitignore Git 将把那些文件永远地拒之门外。
