@@ -11,7 +11,7 @@ Deploy:
     # Filepath of git executable `git.exe`
     # [Easy installer] Use './toolkit/Git/mingw64/bin/git.exe'
     # [Other] Use you own git
-    GitExecutable: ./toolkit/Git/mingw64/bin/git.exe
+    GitExecutable: C:\Program Files\Git\mingw64\bin\git.exe
     # Set git proxy
     # [CN user] Use your local http proxy (http://127.0.0.1:{port}) or socks5 proxy (socks5://127.0.0.1:{port})
     # [Other] Use null
