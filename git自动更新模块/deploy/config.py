@@ -5,12 +5,12 @@
 #@Date         : 2022-02-10 16:16:49
 #@FilePath     : \Python-notebook\git自动更新模块\deploy\config.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-11 10:23:09
+#@LastEditTime : 2022-02-11 18:10:26
 
 
 import copy
 
-from git自动更新模块.deploy.utils import *
+from utils import *
 
 
 class ExecutionError(Exception):
@@ -41,12 +41,13 @@ class DeployConfig:
             print(f'{k}: {v}')
         
         print(f'Rest of the configs are the same as {DEPLOY_TEMPLATE}')
-    
+ 
     def read(self):
         self.config = poor_yaml_read(DEPLOY_TEMPLATE)
         self.config_template = copy.deepcopy(self.config)
         self.config.update(poor_yaml_read(self.file))   
-
+    def write(self):
+        poor_yaml_write(self.config, self.file)
     def filepath(self, key):
         """
         Args:
@@ -56,13 +57,21 @@ class DeployConfig:
             str: Absolute filepath.
         """
         #返回绝对路径
-        return os.path.abspath(os.path.join(self.root_filepath, self.config[key])) \
+        return os.path.abspath(os.path.join(self.config[key])) \
             .replace(r'\\', '/').replace('\\', '/').replace('\"', '"')
     @cached_property
     def root_filepath(self):
         return os.path.abspath(os.path.join(os.path.dirname(__file__), '../')) \
             .replace(r'\\', '/').replace('\\', '/').replace('\"', '"')
-    
+    def bool(self, key):
+        """
+        Args:
+            key (str):
+
+        Returns:
+            bool: Option is ON or OFF.
+        """
+        return self.to_bool(self.config[key])      
     @staticmethod
     def to_bool(value):
         value = value.lower()
