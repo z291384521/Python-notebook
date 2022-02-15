@@ -35,3 +35,13 @@ git log --merges
 
 //查看非合并提交
 git log --no-merges
+
+
+git log --oneline
+--oneline参数可以将每条日志的输出为一行，如果日志比较多的话，
+用这个参数能够使结果看起来比较醒目。
+为了节约日志的篇幅，我后面也会频繁地使用这个参数。
+
+git log ..origin/master  与git log origin/master  区别
+..是比较与本地的哈希值区别 返回不一样的commit
+git log origin/master 单纯查日志

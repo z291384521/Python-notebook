@@ -5,8 +5,9 @@
 #@Date         : 2022-02-12 09:54:26
 #@FilePath     : \Python-notebook\git自动更新模块\webui\updater.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-12 16:50:59
+#@LastEditTime : 2022-02-14 17:30:05
 import datetime
+import subprocess
 import threading
 from deploy.git import GitManager
 from deploy.pip import PipManager
@@ -76,3 +77,44 @@ class Updater(Config,GitManager,PipManager):
     def branch(self):
         return self.config['Branch']
     
+    def execute_output(self, command) -> str:
+        command = command.replace(
+            r'\\', '/').replace('\\', '/').replace('\"', '"')
+        log = subprocess.run(command, capture_output=True,
+                             text=True, encoding='utf8', shell=True).stdout
+        return log    
+    
+    def get_commit(self,revision='', n=1, short_sha1=False):
+        """
+        revision 查看那个分支
+        n=1默认看最前面的一个
+        short_sha1前缀缩写        
+        """
+        ph = 'h' if short_sha1 else 'H'
+
+        log = self.execute_output(
+            f'{self.git} log {revision} --pretty=format:"%{ph}---%an---%ad---%s" --date=iso -{n}')
+
+        #为空返回空值 空值 空值
+        if not log:
+            return None, None, None, None
+
+        logs = log.split('\n')
+        logs = list(map(lambda log: tuple(log.split('---')), logs))
+        
+        if n == 1:
+            return logs[0]
+            #('9266f3b3', 'LmeSzinc', '2022-02-12 22:48:42 +0800', 'Add: Receive META rewards (#863)')
+        else:
+            return logs                        
+        
+    def _check_updata(self) ->bool:
+        self.state = 'checking'
+        source = 'origin'
+        for _ in range(3):
+            if self.execute(f'"{self.git}" fetch {source} {self.branch}', allow_failure=True):
+                break
+        else:
+            print("Git fetch failed")
+            return False
+            
