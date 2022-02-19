@@ -5,7 +5,12 @@
 #@Date         : 2022-02-12 09:54:26
 #@FilePath     : \Python-notebook\git自动更新模块\webui\updater.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-14 17:30:05
+#@LastEditTime : 2022-02-18 16:16:47
+import builtins
+import os
+
+import retry
+from logger import logger
 import datetime
 import subprocess
 import threading
@@ -117,4 +122,46 @@ class Updater(Config,GitManager,PipManager):
         else:
             print("Git fetch failed")
             return False
-            
+        log = self.execute_output(
+            f'"{self.git}" log --not --remotes={source}/* -1 --oneline')
+        if log:
+            logger.info(
+                f"Cannot find local commit {log.split()[0]} in upstream, skip update")
+            return False
+        #核心就是两个点 ..对比哈希值得不同
+        sha1, _, _, message = self.get_commit(f'..{source}/{self.branch}')
+
+        if sha1:
+            logger.info(f"New update avaliable")
+            logger.info(f"{sha1[:8]} - {message}")
+            return True
+        else:
+            logger.info(f"No update")
+            return False  
+
+    def check_update(self):
+        if self.state in (0, 'failed', 'finish'):
+            self.state = self._check_update()        
+    @retry(ExecutionError, tries=3, delay=5, logger=None)
+    def git_install(self):
+        return super().git_install()
+
+    @retry(ExecutionError, tries=3, delay=5, logger=None)
+    def pip_install(self):
+        return super().pip_install()            
+    def update(self):
+        logger.hr("Run update")
+        backup, builtins.print = builtins.print, logger.info
+        try:
+            self.git_install()
+            self.pip_install()
+        except ExecutionError:
+            builtins.print = backup
+            return False
+        builtins.print = backup
+        return True
+
+    def run_update(self):
+        if self.state not in ('failed', 0, 1):
+            return
+        self._start_update()        
