@@ -5,10 +5,9 @@
 #@Date         : 2022-02-18 16:09:09
 #@FilePath     : \Python-notebook\alas任务管理\utils.py
 #@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-19 14:52:55
+#@LastEditTime : 2022-02-25 15:11:10
 
-
-from ast import operator
+import operator
 import ctypes
 import threading
 import time
@@ -44,7 +43,7 @@ class Task:
         g.send(None)
         self.delay = delay
         #如果写了 下次执行时间就是下次执行时间 没有就是当前时间
-        self.next = next_run if next_run else time.time()
+        self.next_run = next_run if next_run else time.time()
         self.name = name if name is not None else self.g.__name__
     #delay延迟执行
     def __str__(self) -> str:
@@ -171,7 +170,23 @@ class TaskHandler:
                 else:
                     time.sleep(0.05)
             else:
-                time.sleep(0.5)                                                               
+                time.sleep(0.5)          
+    def _get_thread(self) -> threading.Thread: 
+        #daemon为守护进程
+        thread = Thread(target=self.loop, daemon=True)
+        return thread    
+    def start(self):
+        logger.info("Start task handler")
+        if self._thread is not None and self._thread.is_alive():
+            logger.warning("Task handler already running!")
+            return
+        self._thread = self._get_thread()
+        self._thread.start()
+    def stop(self) -> None:
+        self.remove_pending_task()
+        if self._thread.is_alive():
+            self._thread.stop()
+        logger.info("Finish task handler")                                                                          
 def get_generator(func: Callable):
     def _g():
         yield
@@ -180,3 +195,142 @@ def get_generator(func: Callable):
     g = _g()
     g.__name__ = func.__name__
     return g
+
+class Switch:
+    def __init__(self, status, get_state, name=None) -> None:
+        """
+        Args: #可以是多种方法组合 
+            status 
+                (dict):A dict describes each state.
+                    {
+                        0: {
+                            'func': (Callable)
+                        },
+                        1: {
+                            'func'
+                            'args': (Optional, tuple)
+                            'kwargs': (Optional, dict)
+                        },
+                        2: [
+                            func1,
+                            {
+                                'func': func2
+                                'args': args2
+                            }
+                        ]
+                        -1: []
+                    }
+                (Callable):current state will pass into this function
+                    lambda state: do_update(state=state)
+            get_state:
+                (Callable):
+                    return current state
+                (Generator):
+                    yield current state, do nothing when state not in status
+            name:
+        """        
+        self._lock=threading.Lock()
+        self.status = status
+        #返回当前状态 0 1 2 3 还是-1 就是转圈的 传递是一个方法
+        self.get_state = get_state
+        if isinstance(get_state, Generator):
+            self._generator = get_state
+        elif isinstance(get_state, Callable):
+            self._generator = self._get_state()        
+    @staticmethod
+    def get_state():
+        pass
+    def _get_state(self):
+        """
+        Predefined generator when `get_state` is an callable
+        Customize it if you have multiple criteria on state
+
+        """  
+        _status = self.get_state()
+        yield _status
+        while True:
+            status = self.get_state()
+            if _status != status:
+                _status = status
+                yield _status
+                continue
+            yield -1
+
+    def switch(self):
+        with self._lock:
+            r = next(self._generator)
+        if callable(self.status):
+            self.status(r)   
+        elif r in self.status:
+            f = self.status[r]
+            if isinstance(f, (dict, Callable)):
+                f = [f]
+            for d in f:
+                if isinstance(d, Callable):
+                    d = {'func': d}
+                func = d['func']
+                args = d.get('args', tuple())
+                kwargs = d.get('kwargs', dict())
+                func(*args, **kwargs)            
+    def g(self) -> Generator:
+        g = get_generator(self.switch)
+        if self.name:
+            name = self.name
+        else:
+            name = self.get_state.__name__
+        g.__name__ = f'Switch_{name}_refresh'
+        return g
+    
+if __name__ == '__main__':
+    def gen(x):
+        n = 0
+        while True:
+            n += x
+            print(n)
+            yield n
+
+    th = TaskHandler()
+    th.start()
+
+    t1 = Task(gen(1), delay=1)
+    t2 = Task(gen(-2), delay=3)
+
+    th.add_task(t1)
+    th.add_task(t2)
+
+    time.sleep(5)
+    th.remove_task(t2, nowait=True)
+    time.sleep(5)
+    th.stop()
+
+    def set_status(self, state: int) -> None:
+        """
+        Args:
+            state (int): 
+                1 (running)
+                2 (not running)
+                3 (warning, stop unexpectedly)
+                4 (stop for update)
+                0 (hide)
+                -1 (*state not changed)
+        """
+        if state == -1:
+            return
+
+        if state == 1:
+            print("运行中")
+        elif state == 2:
+            print("闲置的")
+        elif state == 3:
+            print("出错了")
+        elif state == 4:
+            print("更新")
+
+
+
+    state_switch = Switch(
+            status=set_status,
+            get_state=lambda: getattr(getattr(self, 'alas', -1), 'state', 0),
+            name='state'
+        )
+

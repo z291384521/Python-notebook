@@ -1,9 +1,10 @@
+import builtins
 import datetime
 import logging
 import os
 import sys
 from typing import Callable, List
-
+from builtins import str
 import rich.box
 from rich.console import Console, ConsoleOptions, ConsoleRenderable, NewLine
 from rich.highlighter import RegexHighlighter
@@ -351,7 +352,7 @@ logger.attr_align = attr_align
 logger.set_file_logger = set_file_logger
 logger.rule = rule
 logger.print = print
-logger.log_file: str
+logger.log_file =str
 
 logger.set_file_logger()
 logger.hr('Start', level=0)
