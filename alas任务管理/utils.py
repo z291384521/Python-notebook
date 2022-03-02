@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding=utf-8
-#@Information:
-#@Author       : 反转旋木
-#@Date         : 2022-02-18 16:09:09
-#@FilePath     : \Python-notebook\alas任务管理\utils.py
-#@Email        : 291384521@qq.com
-#@LastEditTime : 2022-02-25 15:11:10
+# @Information:
+# @Author       : 反转旋木
+# @Date         : 2022-02-18 16:09:09
+# @FilePath     : \Python-notebook\alas任务管理\utils.py
+# @Email        : 291384521@qq.com
+# @LastEditTime : 2022-03-02 17:03:41
 
 import operator
 import ctypes
@@ -15,6 +15,7 @@ from tkinter import EXCEPTION
 from typing import Callable, Generator
 from logger import logger
 from typing import List
+
 
 class Thread(threading.Thread):
 
@@ -37,18 +38,19 @@ class Thread(threading.Thread):
                 ctypes.pythonapi.PyThreadState_SetAsyncExc(thread_id, 0)
                 logger.error('Exception raise failure')
 
+
 class Task:
-    def __init__(self,g:Generator,delay:float,next_run:float=None,name:str=None) -> None:
-        self.g=g
+    def __init__(self, g: Generator, delay: float, next_run: float = None, name: str = None) -> None:
+        self.g = g
         g.send(None)
         self.delay = delay
-        #如果写了 下次执行时间就是下次执行时间 没有就是当前时间
+        # 如果写了 下次执行时间就是下次执行时间 没有就是当前时间
         self.next_run = next_run if next_run else time.time()
         self.name = name if name is not None else self.g.__name__
-    #delay延迟执行
+    # delay延迟执行
+
     def __str__(self) -> str:
-        return f'<{self.name} (delay={self.delay})>'    
-    
+        return f'<{self.name} (delay={self.delay})>'
 
     def __next__(self) -> None:
         return next(self.g)
@@ -56,7 +58,8 @@ class Task:
     def send(self, obj) -> None:
         return self.g.send(obj)
 
-    __repr__ = __str__    
+    __repr__ = __str__
+
 
 class TaskHandler:
     def __init__(self) -> None:
@@ -64,19 +67,19 @@ class TaskHandler:
         # 后台执行的任务
         self.tasks: List[Task] = []
         # List of task name to be removed
-        #需要移除的任务列表
+        # 需要移除的任务列表
         self.pending_remove_tasks: List[Task] = []
         # Running task
         self._task = None
         # Task running thread
         self._thread: Thread = None
-        #防止进程打架的
+        # 防止进程打架的
         self._lock = threading.Lock()
 
-    def add(self,func,delay:float, pending_delete: bool = False):
+    def add(self, func, delay: float, pending_delete: bool = False):
         "pending_delete 是否准备删除"
         "将方法变成任务 Callable为可以调用的方法 "
-        if isinstance(func,Callable):               
+        if isinstance(func, Callable):
             g = get_generator(func)
         elif isinstance(func, Generator):
             g = func
@@ -97,14 +100,15 @@ class TaskHandler:
             self.pending_remove_tasks.append(task)
 
     def _remove_task(self, task: Task) -> None:
-        #如果再列表里面移除
+        # 如果再列表里面移除
         if task in self.tasks:
             self.tasks.remove(task)
             logger.info(f"Task {task} removed.")
         else:
             logger.warning(
-                f"Failed to remove task {task}. Current tasks list: {self.tasks}")    
-    def remove_task(self,task:Task,nowait:bool=False):
+                f"Failed to remove task {task}. Current tasks list: {self.tasks}")
+
+    def remove_task(self, task: Task, nowait: bool = False):
         """
         Remove a task in `self.tasks`.
         Args:
@@ -116,7 +120,7 @@ class TaskHandler:
             with self._lock:
                 self._remove_task(task)
         else:
-            #不是马上移除 添加列表
+            # 不是马上移除 添加列表
             self.pending_remove_tasks.append(task)
 
     def remove_pending_task(self) -> None:
@@ -126,7 +130,7 @@ class TaskHandler:
         with self._lock:
             for task in self.pending_remove_tasks:
                 self._remove_task(task)
-                #删除完了以后给空值
+                # 删除完了以后给空值
             self.pending_remove_tasks = []
 
     def get_task(self, name) -> Task:
@@ -134,47 +138,49 @@ class TaskHandler:
             for task in self.tasks:
                 if task.name == name:
                     return task
-            return None            
+            return None
 
     def remove_current_task(self) -> None:
-        self.remove_task(self._task, nowait=True)        
+        self.remove_task(self._task, nowait=True)
 
+    # 核心中的核心 执行循环方法
 
-    #核心中的核心 执行循环方法
     def loop(self):
         while True:
             if self.tasks:
                 with self._lock:
-                    #根据下次执行时间来排序
+                    # 根据下次执行时间来排序
                     self.tasks.sort(key=operator.attrgetter('next_run'))
                     task = self.tasks[0]
                 if task.next_run < time.time():
                     start_time = time.time()
                     try:
-                        self._task=task
-                        #执行send程序
+                        self._task = task
+                        # 执行send程序
                         task.send(self)
                     except Exception as e:
                         logger.exception(e)
-                        #报错程序移除后台程序 立即移除
-                        self.remove_task(task,nowait=True)
+                        # 报错程序移除后台程序 立即移除
+                        self.remove_task(task, nowait=True)
                     finally:
-                        self._task =None
+                        self._task = None
                     end_time = time.time()
-                    #如果有下次执行时间加上下次执行时间
-                    task.next_run += task.delay    
-                    #所有任务加上时间    
+                    # 如果有下次执行时间加上下次执行时间
+                    task.next_run += task.delay
+                    # 所有任务加上时间
                     with self._lock:
                         for task in self.tasks:
-                            task.next_run += end_time - start_time 
+                            task.next_run += end_time - start_time
                 else:
                     time.sleep(0.05)
             else:
-                time.sleep(0.5)          
-    def _get_thread(self) -> threading.Thread: 
-        #daemon为守护进程
+                time.sleep(0.5)
+
+    def _get_thread(self) -> threading.Thread:
+        # daemon为守护进程
         thread = Thread(target=self.loop, daemon=True)
-        return thread    
+        return thread
+
     def start(self):
         logger.info("Start task handler")
         if self._thread is not None and self._thread.is_alive():
@@ -182,11 +188,14 @@ class TaskHandler:
             return
         self._thread = self._get_thread()
         self._thread.start()
+
     def stop(self) -> None:
         self.remove_pending_task()
         if self._thread.is_alive():
             self._thread.stop()
-        logger.info("Finish task handler")                                                                          
+        logger.info("Finish task handler")
+
+
 def get_generator(func: Callable):
     def _g():
         yield
@@ -196,9 +205,12 @@ def get_generator(func: Callable):
     g.__name__ = func.__name__
     return g
 
+
 class Switch:
     def __init__(self, status, get_state, name=None) -> None:
+        # 第一个可以是 字典 第二个必须是方法
         """
+        这个相当于执行了status获得出来的结果然后再进行执行相关命令
         Args: #可以是多种方法组合 
             status 
                 (dict):A dict describes each state.
@@ -228,26 +240,31 @@ class Switch:
                 (Generator):
                     yield current state, do nothing when state not in status
             name:
-        """        
-        self._lock=threading.Lock()
+
+
+
+        """
+        self._lock = threading.Lock()
         self.status = status
-        #返回当前状态 0 1 2 3 还是-1 就是转圈的 传递是一个方法
+        # 返回当前状态 0 1 2 3 还是-1 就是转圈的 传递是一个方法
         self.get_state = get_state
         if isinstance(get_state, Generator):
             self._generator = get_state
         elif isinstance(get_state, Callable):
-            self._generator = self._get_state()        
+            self._generator = self._get_state()
+
     @staticmethod
     def get_state():
         pass
+
     def _get_state(self):
         """
-        Predefined generator when `get_state` is an callable
-        Customize it if you have multiple criteria on state
-
-        """  
+        获得状态一个方法执行
+        """
+        # 执行方法获得状态
         _status = self.get_state()
         yield _status
+        # 第二次进入获得状态
         while True:
             status = self.get_state()
             if _status != status:
@@ -258,9 +275,12 @@ class Switch:
 
     def switch(self):
         with self._lock:
+            # 执行获得状态的方法
             r = next(self._generator)
+        # 如果是方法就直接执行
         if callable(self.status):
-            self.status(r)   
+            self.status(r)
+        # 如果是方法解析方法然后执行
         elif r in self.status:
             f = self.status[r]
             if isinstance(f, (dict, Callable)):
@@ -271,7 +291,8 @@ class Switch:
                 func = d['func']
                 args = d.get('args', tuple())
                 kwargs = d.get('kwargs', dict())
-                func(*args, **kwargs)            
+                func(*args, **kwargs)
+
     def g(self) -> Generator:
         g = get_generator(self.switch)
         if self.name:
@@ -280,7 +301,8 @@ class Switch:
             name = self.get_state.__name__
         g.__name__ = f'Switch_{name}_refresh'
         return g
-    
+
+
 if __name__ == '__main__':
     def gen(x):
         n = 0
@@ -303,7 +325,7 @@ if __name__ == '__main__':
     time.sleep(5)
     th.stop()
 
-    def set_status(self, state: int) -> None:
+    def set_status(state: int) -> None:
         """
         Args:
             state (int): 
@@ -326,11 +348,16 @@ if __name__ == '__main__':
         elif state == 4:
             print("更新")
 
-
+    def inpt_num():
+        while True:
+            data = input("请输入数字")
+            inputData = eval(data)
+            if type(inputData) == int:
+                return inputData
 
     state_switch = Switch(
-            status=set_status,
-            get_state=lambda: getattr(getattr(self, 'alas', -1), 'state', 0),
-            name='state'
-        )
-
+        status=set_status,
+        get_state=inpt_num,
+        name='num'
+    )
+    state_switch.switch()
