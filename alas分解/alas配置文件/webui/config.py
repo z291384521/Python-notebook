@@ -78,8 +78,7 @@ class WebuiConfig:
         """
         super().__setattr__(key, value)
         # 利用and前面后定避免了 self.config报错
-        # key[0].isupper() slef.Fxxx检测的F字符
-        # 可以注释
+        # key[0].isupper() slef.Language检测的L字符 用来保存近期修改？
         if key[0].isupper() and key in self.config:
             self.config[key] = value
             self.write()
