@@ -88,3 +88,28 @@ fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"
 @app.get("/items/")
 async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
+
+#可选参数
+#http://127.0.0.1:8000/items_a/item_id=sdadasdas?q=asdasda
+#返回{"item_id":"item_id=sdadasdas","q":"asdasda"}
+@app.get("/items_a/{item_id}")
+async def read_item(item_id: str, q: Optional[str] = None):
+    if q:
+        return {"item_id": item_id, "q": q}
+    return {"item_id": item_id}
+#必需查询参数
+#这里的查询参数 needy 是类型为 str 的必需查询参数。
+# http://127.0.0.1:8000/items/foo-item
+# 会报错
+@app.get("/items_b/{item_id}")
+async def read_user_item(item_id: str, needy: str):
+    item = {"item_id": item_id, "needy": needy}
+    return item
+#当然，你也可以定义一些参数为必需的，一些具有默认值，而某些则完全是可选的：
+@app.get("/items/{item_id}")
+async def read_user_item(
+    item_id: str, needy: str, skip: int = 0, limit: Optional[int] = None
+):
+    item = {"item_id": item_id, "needy": needy, "skip": skip, "limit": limit}
+    return item
+    
