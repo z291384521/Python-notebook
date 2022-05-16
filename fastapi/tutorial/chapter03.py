@@ -78,9 +78,9 @@ def type_conversion(param: bool = False):
 
 @app03.get("/query/validations")  # 长度+正则表达式验证，比如长度8-16位，以a开头。其它校验方法看Query类的源码
 def query_params_validate(
-    value: str = Query(..., min_length=8, max_length=16, regex="^a", alias="alias"),  # ...换成None就变成选填的参数
+    value: str = Query(default="zzsss", min_length=8, max_length=16, regex="^a", alias="alias"),  # ...换成None就变成选填的参数
     values: List[str] = Query(["v1", "v2"], alias="alias_name")
-):  # 多个查询参数的列表。参数别名
+):  # 多个查询参数的列表。参数为别名
     return value, values
 
 
@@ -92,7 +92,7 @@ class CityInfo(BaseModel):
     country: str
     country_code: str = None  # 给一个默认值
     country_population: int = Field(default=800, title="人口数量", description="国家的人口数量", ge=800)
-
+    #如果写了 例子会出现示例
     class Config:
         schema_extra = {
             "example": {
@@ -142,6 +142,7 @@ def body_multiple_parameters(
 class Data(BaseModel):
     city: List[CityInfo] = None  # 这里就是定义数据格式嵌套的请求体
     date: date  # 额外的数据类型，还有uuid datetime bytes frozenset等，参考：https://fastapi.tiangolo.com/tutorial/extra-data-types/
+    #后面为检测限制参数
     confirmed: int = Field(ge=0, description="确诊数", default=0)
     deaths: int = Field(ge=0, description="死亡数", default=0)
     recovered: int = Field(ge=0, description="痊愈数", default=0)

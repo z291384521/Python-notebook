@@ -2,16 +2,14 @@
 # -*- coding:utf-8 -*-
 # __author__ = '__Jack__'
 
-from typing import Optional, List
 
-from fastapi import APIRouter, status, Form, File, UploadFile, HTTPException
+from typing import Optional, List
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile,status
 from pydantic import BaseModel, EmailStr
 
 app04 = APIRouter()
 
 """Response Model 响应模型"""
-
-
 class UserIn(BaseModel):
     username: str
     password: str
@@ -23,7 +21,7 @@ class UserIn(BaseModel):
 
 class UserOut(BaseModel):
     username: str
-    email: EmailStr  # 用 EmailStr 需要 pip install pydantic[email]
+    email: EmailStr = "user01@example.com" # 用 EmailStr 需要 pip install pydantic[email]
     mobile: str = "10086"
     address: str = None
     full_name: Optional[str] = None
@@ -34,7 +32,11 @@ users = {
     "user02": {"username": "user02", "password": "123456", "email": "user02@example.com", "mobile": "110"}
 }
 
+#路径操作 
+#response_model_exclude_unset不用默认的参数进行传输
 
+#如下输入传输UserIn 类型
+#如下输出传输UserOut 类型
 @app04.post("/response_model/", response_model=UserOut, response_model_exclude_unset=True)
 async def response_model(user: UserIn):
     """response_model_exclude_unset=True表示默认值不包含在响应中，仅包含实际给的值，如果实际给的值与默认值相同也会包含在响应中"""
@@ -46,9 +48,12 @@ async def response_model(user: UserIn):
 @app04.post(
     "/response_model/attributes",
     response_model=UserOut,
+    #并行数据类型UserIn, UserOut两个数据取并集
     # response_model=Union[UserIn, UserOut],
     # response_model=List[UserOut],
+    #返回必须要包含include
     response_model_include=["username", "email", "mobile"],
+    #返回不必须包括
     response_model_exclude=["mobile"]
 )
 async def response_model_attributes(user: UserIn):
@@ -118,6 +123,7 @@ async def upload_files(files: List[UploadFile] = File(...)):  # 如果要上传�
     summary="This is summary",
     description="This is description",
     response_description="This is response description",
+    #废弃与否
     deprecated=True,
     status_code=status.HTTP_200_OK
 )
@@ -129,8 +135,6 @@ async def path_operation_configuration(user: UserIn):
     """
     return user.dict()
 
-
-"""【见run.py】FastAPI 应用的常见配置项"""
 
 """Handling Errors 错误处理"""
 
