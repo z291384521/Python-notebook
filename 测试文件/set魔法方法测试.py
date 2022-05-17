@@ -12,7 +12,8 @@ super().__setattr__("zame", 1234)
 hasattr检测 
 hasattr(self,"zame")
 注意双引号
-git commit -m "一些学习笔记 猴子补丁 魔法方法洋气写法 以及全局变量"
+
+
 =====================================
 在执行self.xxxx=xxx都会执行__setattr__
 没有赋值之前会报错
