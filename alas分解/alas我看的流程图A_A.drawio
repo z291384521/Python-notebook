@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-05-17T16:44:08.845Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="N8_r_UZLJgbRQe9-d1Ld" version="18.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-17T16:46:56.729Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="8XBUZoAiE3BzhAT3PaRO" version="18.0.6" type="github">
   <diagram id="FVm69CzN_h85lXlvuJzs" name="Page-1">
     <mxGraphModel dx="3519" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F4F1DE" math="0" shadow="0">
       <root>
@@ -50,10 +50,10 @@
         <mxCell id="_43DGBzI_nXKlMJYh1tM-66" value="用户访问网页" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;startSize=26;" vertex="1" parent="1">
           <mxGeometry x="-2004" y="154" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="_43DGBzI_nXKlMJYh1tM-67" value="" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#E07A5F;fontColor=#393C56;rounded=1;whiteSpace=wrap;html=1;textDirection=ltr;align=center;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="-1910" y="74" width="200" height="80" as="geometry" />
+        <mxCell id="_43DGBzI_nXKlMJYh1tM-67" value="AlasGUI" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#E07A5F;fontColor=#393C56;rounded=1;whiteSpace=wrap;html=1;textDirection=ltr;align=left;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="-1900" y="130" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="_43DGBzI_nXKlMJYh1tM-68" value="" style="text;strokeColor=none;fillColor=#F2CC8F;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=1;glass=0;fontColor=#393C56;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;startSize=26;html=1;" vertex="1" parent="_43DGBzI_nXKlMJYh1tM-67">
+        <mxCell id="_43DGBzI_nXKlMJYh1tM-68" value="index方法 执行AlasGUI开始run" style="text;strokeColor=none;fillColor=#F2CC8F;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=1;glass=0;fontColor=#393C56;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;startSize=26;html=1;" vertex="1" parent="_43DGBzI_nXKlMJYh1tM-67">
           <mxGeometry y="26" width="200" height="54" as="geometry" />
         </mxCell>
       </root>
