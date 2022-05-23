@@ -13,6 +13,11 @@
 function 函数，返回包含每次 function 函数返回值的新列表
 """
 
+
+
+from importlib.resources import path
+
+
 def square(x) :            # 计算平方数
     return x ** 2
 list1 =list(map(square,[1,2,3,4]))
@@ -26,3 +31,10 @@ logs = log.split('\n')
 print(logs)
 logs = list(map(lambda log: tuple(log.split('---')), logs))
 print(logs[0])
+
+"""
+拼接字符串用法
+函数在将给定函数应用于给定可迭代对象（列表，元组等）的每个项后，返回结果的映射对象（它是迭代器）。
+"""
+path = ('C:\\Users\\反转旋木\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe', 'chrome.exe', 12820)
+print(' '.join(map(str, path)))
