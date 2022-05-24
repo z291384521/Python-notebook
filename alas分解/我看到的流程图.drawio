@@ -1,0 +1,135 @@
+<mxfile host="app.diagrams.net" modified="2022-05-23T16:05:05.263Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="069nPoq6ovkm-Z96u6qj" version="18.0.6" type="github">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1719" dy="449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F4F1DE" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="US55GbX0wkzGkbjlVKdX-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1.006;exitY=0.068;exitDx=0;exitDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="US55GbX0wkzGkbjlVKdX-10" target="US55GbX0wkzGkbjlVKdX-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-10" value="DeployConfig" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-400" y="220" width="170" height="216" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-11" value="def showconfig检查不同配置" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-10" vertex="1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-12" value="def  read" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-10" vertex="1">
+          <mxGeometry y="52" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-13" value="def write&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-10" vertex="1">
+          <mxGeometry y="78" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-16" value="def  filepath 获得 git  adb&#xa;文件等绝对路径" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="US55GbX0wkzGkbjlVKdX-10" vertex="1">
+          <mxGeometry y="104" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-17" value=" def execute&#xa;cmd命令调试" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="US55GbX0wkzGkbjlVKdX-10" vertex="1">
+          <mxGeometry y="160" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-14" value="初始化时候进行传递配置文件位置" style="whiteSpace=wrap;html=1;fillColor=none;fontStyle=0;startSize=26;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-180" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="US55GbX0wkzGkbjlVKdX-18" target="US55GbX0wkzGkbjlVKdX-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-18" value="GitManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-600" y="480" width="170" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-19" value="git 获得git位置" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-18" vertex="1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-20" value="git_repository_init  初始化等&#xa;本地保存用 git stash命令" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-18" vertex="1">
+          <mxGeometry y="52" width="170" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-21" value="git_install 执行上面的命令" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-18" vertex="1">
+          <mxGeometry y="90" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="US55GbX0wkzGkbjlVKdX-31" target="US55GbX0wkzGkbjlVKdX-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-31" value="PipManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-400" y="480" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-33" value="def python 获得python位置" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-31" vertex="1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-34" value="def requirements_file 文件位置&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-31" vertex="1">
+          <mxGeometry y="52" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-35" value="def pip " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="US55GbX0wkzGkbjlVKdX-31" vertex="1">
+          <mxGeometry y="78" width="170" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-36" value="def pip_install 执行命令" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="US55GbX0wkzGkbjlVKdX-31" vertex="1">
+          <mxGeometry y="100" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="US55GbX0wkzGkbjlVKdX-53" target="US55GbX0wkzGkbjlVKdX-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-53" value="AppManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-210" y="480" width="170" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-54" value="app_asar_replace" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-53" vertex="1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="US55GbX0wkzGkbjlVKdX-55" value="app_update" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="US55GbX0wkzGkbjlVKdX-53" vertex="1">
+          <mxGeometry y="52" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-0" value="asar为打包文件格式 " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="US55GbX0wkzGkbjlVKdX-53">
+          <mxGeometry y="78" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3H_qa7xyN2LD_CXyZ9YP-1" target="US55GbX0wkzGkbjlVKdX-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-1" value="AlasManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-30" y="480" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-2" value="iter_process_by_name" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-4" value="找到其他的alas 以及&#xa;同路径python干掉" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-1">
+          <mxGeometry y="52" width="170" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3H_qa7xyN2LD_CXyZ9YP-6" target="US55GbX0wkzGkbjlVKdX-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-6" value="Config" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-800" y="480" width="170" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-7" value="execute" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-6">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-9" value="重写了下 execute" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-6">
+          <mxGeometry y="52" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3H_qa7xyN2LD_CXyZ9YP-11" target="3H_qa7xyN2LD_CXyZ9YP-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3H_qa7xyN2LD_CXyZ9YP-11" target="US55GbX0wkzGkbjlVKdX-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3H_qa7xyN2LD_CXyZ9YP-11" target="US55GbX0wkzGkbjlVKdX-31">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-515" y="670" />
+              <mxPoint x="-315" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-11" value="Updater" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-600" y="780" width="170" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-12" value="执行父类方法init&#xa;给状态为0" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-11">
+          <mxGeometry y="26" width="170" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-13" value="get_commit" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-11">
+          <mxGeometry y="80" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-15" value="delay 获得间隔时间检测&#xa;schedule_time获得更新时间" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-11">
+          <mxGeometry y="106" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="3H_qa7xyN2LD_CXyZ9YP-16" value="更新步骤    重点&#xa;通过 git log ..origin/master&#xa;..是比较与本地的哈希值区别 返回不一样的commit&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="3H_qa7xyN2LD_CXyZ9YP-11">
+          <mxGeometry y="162" width="170" height="88" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -64,3 +64,20 @@ def sub_query(q: str = Depends(query), last_query: Optional[str] = None):
 async def sub_dependency(final_query: str = Depends(sub_query, use_cache=True)):
     """use_cache默认是True, 表示当多个依赖有一个共同的子依赖时，每次request请求只会调用子依赖一次，多次调用将从缓存中获取"""
     return {"sub_dependency": final_query}
+
+"""Dependencies in path operation decorators 路径操作装饰器中的多依赖"""
+async def verify_token(x_token: str = Header(...)):
+    """没有返回值的子依赖"""
+    if x_token != "fake-super-secret-token":
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
+
+async def verify_key(x_key: str = Header(...)):
+    """有返回值的子依赖，但是返回值不会被调用"""
+    if x_key != "fake-super-secret-key":
+        raise HTTPException(status_code=400, detail="X-Key header invalid")
+    return x_key
+@app05.get("/dependency_in_path_operation", dependencies=[Depends(verify_token), Depends(verify_key)])  # 这时候不是在函数参数中调用依赖，而是在路径操作中
+async def dependency_in_path_operation():
+    return [{"user": "user01"}, {"user": "user02"}]
+
+
