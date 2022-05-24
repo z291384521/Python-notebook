@@ -9,14 +9,44 @@
 
 
 """
-该模块提供对Python的所有“内置”标识符的直接访问；例如，builtins.open 是内置函数的全名 open() 
+builtins 用法与__builtins__
 
-大多数应用程序通常不会显式访问此模块，但在提供与内置值同名的对象的模块中可能很有用，但其中还需要内置该名称。例如，
-在一个想要实现 open() 函数的模块中，它包装了内置的 open() ，这个模块可以直接使用:
 """
 
-#
+#####################
+# builtins 用法
+#####################
 import builtins
 
-
 backup = builtins.print
+backup("这其实print")
+
+def test():
+    print('--test--')
+    
+builtins.__dict__['new_test'] = test
+
+test()
+new_test()
+# test 只能在该模块中使用，而new_test可以在本程序中的其它任何一个模块中使用(如果不导入)，因为test函数已经放到内建模块中了。
+
+
+
+"""
+__builtins__ 同时存在于python2和Python3,并且功能相同。它就是对内建模块一个引用.
+在主模块__main__中: __builtins__是对内建模块本身的引用，即__builtins__完全等价于builtins，二者完全是一个东西，不分彼此.此时，__builtins__的类型是模块类型。
+在非__main__模块中：__builtins__仅是对builtins.__dict__的引用，而非builtins本身。它在任何地方都可见。此时__builtins__的类型是字典。
+
+作者：whit_py
+链接：https://www.jianshu.com/p/c9cf8a864668
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+"""
+
+
+def printTest():
+ print(__builtins__ is builtins)
+ print(__builtins__ is builtins.__dict__)
+ print(type(__builtins__))
+
+printTest()
