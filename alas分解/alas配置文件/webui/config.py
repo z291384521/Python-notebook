@@ -77,8 +77,9 @@ class WebuiConfig:
         Catch __setattr__, copy to `self.config`, write deploy config.
         """
         super().__setattr__(key, value)
-        # 利用and前面后定避免了 self.config报错
-        # key[0].isupper() slef.Language检测的L字符 用来保存近期修改？
+        # 第一次执行的时候  and前面后定避免了 self.config报错
+        # key[0].isupper() slef.Language检测的L字符
+        #
         if key[0].isupper() and key in self.config:
             self.config[key] = value
             self.write()
