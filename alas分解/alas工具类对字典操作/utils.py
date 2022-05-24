@@ -75,7 +75,40 @@ def deep_get(d, keys, default=None):
         return default
     if not keys:
         return d
+    #通过不断的减少 keys来读取
     return deep_get(d.get(keys[0]), keys[1:], default)
+
+def deep_pop(d, keys, default=None):
+    """
+    模仿get的
+    Pop value from dictionary safely, imitating deep_get().
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not isinstance(d, dict):
+        return default
+    if not keys:
+        return default
+    elif len(keys) == 1:
+        return d.pop(keys[0], default)
+    return deep_pop(d.get(keys[0]), keys[1:], default)
+
+
+
+def deep_set(d, keys, value):
+    """
+    Set value into dictionary safely, imitating deep_get().
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not keys:
+        return value
+    if not isinstance(d, dict):
+        d = {}
+    d[keys[0]] = deep_set(d.get(keys[0], {}), keys[1:], value)
+    return d
 
 def deep_iter(data, depth=0, current_depth=1):
     """
@@ -93,16 +126,20 @@ def deep_iter(data, depth=0, current_depth=1):
     if isinstance(data, dict) \
             and (depth and current_depth <= depth):
         for key, value in data.items():
+            #通过不断的减少层数
             for child_path, child_value in deep_iter(value, depth=depth, current_depth=current_depth + 1):
                 yield [key] + child_path, child_value
     else:
         yield [], data
 
-
 if __name__ == '__main__':
-    os.chdir(r"F:\Python-notebook\alas分解\alas工具类对字典操作")
-    print(os.getcwd())
+    os.chdir(os.path.dirname(__file__))
     ALAS_ARGS = read_file(r"args.json")
-    # for path, d in deep_iter(ALAS_ARGS, depth=4):
+    # for path, d in deep_iter(ALAS_ARGS, depth=3):
     #     print(path,d)
-    deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
+    value=deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
+    print(value)
+    value1=deep_set(ALAS_ARGS,'Alas.Emulator.Serial',value="zzzz")
+    print(value1)
+    value=deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
+    print(value)
