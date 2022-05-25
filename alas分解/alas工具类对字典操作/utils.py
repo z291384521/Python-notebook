@@ -6,6 +6,7 @@ from filelock import FileLock
 import yaml
 import os
 import sys
+from datetime import datetime, timedelta, timezone
 #报错时所含有的环境变量
 print(sys.path)
 
@@ -94,7 +95,24 @@ def deep_pop(d, keys, default=None):
         return d.pop(keys[0], default)
     return deep_pop(d.get(keys[0]), keys[1:], default)
 
-
+def deep_default(d, keys, value):
+    """
+    Set default value into dictionary safely, imitating deep_get().
+    Value is set only when the dict doesn't contain such keys.
+    对于没有的值赋value的值
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not keys:
+        if d:
+            return d
+        else:
+            return value
+    if not isinstance(d, dict):
+        d = {}
+    d[keys[0]] = deep_default(d.get(keys[0], {}), keys[1:], value)
+    return d
 
 def deep_set(d, keys, value):
     """
@@ -107,9 +125,10 @@ def deep_set(d, keys, value):
         return value
     if not isinstance(d, dict):
         d = {}
+    #deep_set返回value来修改字典
     d[keys[0]] = deep_set(d.get(keys[0], {}), keys[1:], value)
     return d
-
+ 
 def deep_iter(data, depth=0, current_depth=1):
     """
     Iter a dictionary safely.
@@ -132,6 +151,44 @@ def deep_iter(data, depth=0, current_depth=1):
     else:
         yield [], data
 
+
+def parse_value(value, data):
+    """
+    Convert a string to float, int, datetime, if possible.
+
+    Args:
+        value (str):
+        data (dict):
+
+    Returns:
+
+    """
+    if 'option' in data:
+        if value not in data['option']:
+            return data['value']
+    if isinstance(value, str):
+        if value == '':
+            return None
+        if value == 'true' or value == 'True':
+            return True
+        if value == 'false' or value == 'False':
+            return False
+        if '.' in value:
+            try:
+                return float(value)
+            except ValueError:
+                pass
+        else:
+            try:
+                return int(value)
+            except ValueError:
+                pass
+        try:
+            return datetime.fromisoformat(value)
+        except ValueError:
+            pass
+
+    return value
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
     ALAS_ARGS = read_file(r"args.json")
@@ -139,7 +196,11 @@ if __name__ == '__main__':
     #     print(path,d)
     value=deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
     print(value)
-    value1=deep_set(ALAS_ARGS,'Alas.Emulator.Serial',value="zzzz")
-    print(value1)
+    value1=deep_set(ALAS_ARGS,'Alas.Emulator.Serial',value="")
+    # print(value1)
+    value=deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
+    print(value)
+    value2=deep_default(ALAS_ARGS,'Alas.Emulator.Serial',value="zzzz11")
+    # print(value2)
     value=deep_get(ALAS_ARGS,'Alas.Emulator.Serial')
     print(value)
