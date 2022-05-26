@@ -1,0 +1,22 @@
+<html>
+    <head>
+    <style>
+        /* rem其实是一个单位 ，是个相对单位 root em。rem就是root（根元素的大小）相对于html元素的字体大小的单位。 */
+        /* 区别em  em指的是父级字体大小，1em是父级字体大小的font-size的值 */
+        /* rem布局的原理   就是根据一个html根元素来控制，网页的布局，实现类似于自适应等比例的缩放的布局。 */
+        /* rem的作用
+        通过设置 根元素<html>的font-size的大小，来控制整个html文档内的字体大小、元素宽高、内外边距等，根据移动设备的宽度大小来实现自适应，不同的设备都展示一致的页面效果。 */
+        html {
+            font-size: 12px;
+        }
+        div {
+            font-size: 12px;
+            width: 15rem;
+            height: 15rem;
+            background-color: purple;
+        }
+    </style>
+    </head>
+    <body></body>
+    <header></header>
+</html>

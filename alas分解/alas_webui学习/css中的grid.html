@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>grid</title>
+<style>
+.grid-container {
+  display: grid;
+  /* 行来排列 */
+  grid-auto-flow: column;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* none	默认值，不指定列的大小。
+  auto	列的大小由容器的大小和列中网格元素内容的大小决定。
+  max-content	每列的大小设置为该列中最大网格元素的大小。
+  min-content	每列的大小设置为该列中最小网格元素的大小。
+  length	长度值，可以是 px 为单位的数值或百分比 %。 0 是默认值。 了解更多长度单位。
+  initial	将此属性设置为默认值。 阅读关于 initial
+  inherit	从父元素继承该属性。 阅读关于 inherit */
+  /* 制作一个 4 列的网格容器，并为每列设置一个尺寸： */
+  /* grid-template-columns: 30px 200px auto 100px; */
+  /* 网格引入了 fr 单位来帮助我们创建灵活的网格轨道。一个 fr 单位代表网格容器中可用空间的一等份。 */
+  grid-template-columns: 1fr 1fr 1fr;
+  /* 网格间距（Column Gap）指的是两个网格单元之间的网格横向间距或网格纵向间距。 */
+  grid-gap: 10px;
+
+
+  background-color: #2196F3;
+  /* 类容与底色的填充 */
+  padding: 10px;
+  /* grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto; */
+  
+}
+  /* 网格线 
+  画了格子 确定一个地方用几块的
+  */
+.item1 {
+grid-column-start: 1;
+grid-column-end: 3;
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container" >
+  <div class="item1">1</div>
+  <div class="item2">2</div>
+  <div class="item3">3</div>
+  <div class="item4">4</div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -17,6 +17,10 @@ print(os.getcwd())
 print(os.path.join(os.path.dirname(__file__)))
 os.chdir(os.path.join(os.path.dirname(__file__)))
 
+
+
+
+
 class Task:
     def __init__(
         self, g: Generator, delay: float, next_run: float = None, name: str = None
@@ -201,9 +205,10 @@ def _read(path):
         return f.read()
 
 def filepath_icon(filename):
-  
     return f"./icon/{filename}.svg"
 
+def filepath_css(filename):
+    return f"./css/{filename}.css"
 
 class Icon:
     """ 
