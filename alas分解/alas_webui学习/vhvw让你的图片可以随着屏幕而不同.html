@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <style>
+        .outer {
+            background-color: rgba(92, 92, 92, 0.6);
+        }
+        
+        .innerpx {
+            margin: auto;
+            background-color: #f4f405;
+            /* 在單位的地方填入px，很容易理解，網頁上就會呈現一個100px*100px的正方形，當我們縮放螢幕的時候，這個正方形並不會隨著變動。 */
+            width: 100px;
+            height: 100px;
+        }
+        /* 使用%的時候，呈現的結果會是空白的，因為我們的div內並沒有任何內容，所以即使設定為100%，還是不會顯示出任何東西。 */
+        
+        .innerz {
+            margin: auto;
+            background-color: #f4f405;
+            width: 20%;
+            height: 20%;
+        }
+        
+        .innervmh {
+            margin: auto;
+            background-color: #f4f405;
+            width: 20vw;
+            height: 20vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="innerpx">
+            1
+        </div>
+    </div>
+    <div class="outer">
+        <div class="innerz">
+            2
+        </div>
+    </div>
+    <div class="outer">
+        <div class="innervmh">
+            3
+        </div>
+    </div>
+
+</body>
+
+</html>

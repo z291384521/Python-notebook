@@ -1,0 +1,55 @@
+<!-- Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。 -->
+<!-- 任何一个容器都可以指定为Flex布局。 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex_row {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+        
+        .flex_column {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        .flex_between {
+            justify-content: space-between !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 培训管理详情内容 -->
+    <div class="card_bg1 flex_row">
+        <div class="flex_column">
+            <div class="card_bg1">
+                xxxxxxxxxxxxxxxxxx
+            </div>
+            <div class="card_bg1">
+                xxxxxxxxxxxxxxxxxx
+            </div>
+            <div class="card_bg1">
+                xxxxxxxxxxxxxxxxxx
+            </div>
+        </div>
+
+        <div class="card_bg1">
+            xxxxxxxxxxxxxxxxxx
+        </div>
+
+        <div class="card_bg1">
+            xxxxxxxxxxxxxxxxxx
+        </div>
+    </div>
+
+</body>
+
+</html>
