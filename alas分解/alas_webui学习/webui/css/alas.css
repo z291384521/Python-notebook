@@ -298,12 +298,11 @@ pre.rich-traceback-code {
 }
 
 #pywebio-scope-contents {
-    /* margin-top属性设置元素的上部边距。 */
+
     margin-top: 0;
-    /* 如果它溢出了元素的内容区-剪辑div元素的顶部/底部边缘内容： */
-    /* auto	如果溢出框，则应该提供滚动机制。 */
+
     overflow-y: auto;
-    /* 让所有弹性盒模型对象的子元素都有相同的长度，且忽略它们内部的内容： */
+
     display: flex;
 }
 

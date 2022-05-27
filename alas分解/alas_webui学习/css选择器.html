@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /*
+        1、标签选择器 
+        标签选择器，此种选择器影响范围大，建议尽量应用在层级选择器中。
+         */
+        div {
+            color: red
+        }
+
+        /*
+         2、id选择器
+            通过id名来选择元素，元素的id名称不能重复，所以一个样式设置项只能对应于页面上一个元素，
+            不能复用，id名一般给程序使用，所以不推荐使用id作为选择器。
+         <div id="box">....</div> 
+          */
+        #box {
+            color: red
+        }
+
+        /*
+        类选择器
+        通过类名来选择元素，一个类可应用于多个元素，一个元素上也可以使用多个类，应用灵活，可复用，是css中应用最多的一种选择器。 
+         */
+        .red {
+            color: red
+        }
+
+        .big {
+            font-size: 20px
+        }
+
+        .mt10 {
+            margin-top: 10px
+        }
+
+
+        /* 下面这种写法是 */
+        /* 第一个*是类型 div p等 class*="test"类包含test就执行 */
+        *[class*="test"] {
+            background: #ffff00;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="first_test">The first div element.</div>
+    <div class="second">The second div element.</div>
+    <div class="test">The third div element.</div>
+    <p class="test">This is some text in a paragraph.</p>
+
+</body>
+
+</html>

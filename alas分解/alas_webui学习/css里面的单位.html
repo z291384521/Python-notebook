@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <style>
+        /* 相对长度 */
+        /* em   它是描述相对于应用在当前元素的字体尺寸，所以它也是相对长度单位。一般浏览器字体大小默认为16px，则2em == 32px； */
+        .web {
+            font-size: 30px;
+            border: 1px solid black;
+        }
+
+        .span {
+            font-size: 0.5em;
+        }
+
+        /* ex	依赖于英文字母小 x 的高度 */
+        .span1 {
+            font-size: 1ex;
+        }
+
+        /* dh  数字 0 的宽度*/
+        /* rem	rem 是根 em（root em）的缩写，rem作用于非根元素时，相对于根元素字体大小；rem作用于根元素字体大小时，相对于其出初始字体大小。 */
+        /* 作用于根元素，相对于原始大小（16px），所以html的font-size为32px*/
+        .rem1 {
+            font-size: 2rem
+        }
+
+        /* 
+        vw	viewpoint width，视窗宽度，1vw=视窗宽度的1%	
+        vh	viewpoint height，视窗高度，1vh=视窗高度的1%
+         */
+        .vw {
+            font-size: 20vw
+        }
+
+        .vh {
+            font-size: 20vh
+        }
+
+        /* vmin vw和vh中较小的那个。 尝试一下
+        vmax vw和vh中较大的那个。 */
+
+
+        /* : rem与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。 */
+
+
+        /* 绝对长度
+        绝对长度单位是一个固定的值，它反应一个真实的物理尺寸。绝对长度单位视输出介质而定，不依赖于环境（显示器、分辨率、操作系统等）。
+
+        单位 描述 在线实例
+        cm 厘米 尝试一下
+        mm 毫米 尝试一下
+        in 英寸 (1in = 96px = 2.54cm) 尝试一下
+        px * 像素 (1px = 1/96th of 1in) 尝试一下
+        pt point，大约1/72英寸； (1pt = 1/72in) 尝试一下
+        pc pica，大约 12pt，1/6英寸； (1pc = 12 pt) */
+    </style>
+</head>
+
+<body>
+    <div class="web">div 的 font-size 设置为 30px。 <span class="span">div 中的 span 元素 font-size 为 0.5em, 计算结果后即为 0.5x30 =
+            15px</span>。</div>
+    <div class="web">div 的 font-size 设置为 30px。 <span class="span1">div 中的 span 元素 font-size 为 1ex</span>。</div>
+    <div class="rem1">作用于根元素，相对于原始大小（16px），所以html的font-size为32px</div>
+    <div class="vw">Hello</div>
+    <div class="vh">VM</div>
+</body>
+<header></header>
+
+</html>
