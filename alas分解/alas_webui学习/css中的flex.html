@@ -1,55 +1,80 @@
-<!-- Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。 -->
-<!-- 任何一个容器都可以指定为Flex布局。 -->
-
+!
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        .flex_row {
-            display: flex !important;
-            flex-direction: row !important;
+        * {
+            box-sizing: border-box;
         }
-        
-        .flex_column {
-            display: flex !important;
-            flex-direction: column !important;
+
+        .flex-container {
+            display: flex;
+            /* flex有的属性如下 */
+            /* flex-direction: row | row-reverse | column | column-reverse; */
+            /* row（默认值）：主轴为水平方向，起点在左端。
+            row-reverse：主轴为水平方向，起点在右端。
+            column：主轴为垂直方向，起点在上沿。
+            column-reverse：主轴为垂直方向，起点在下沿。 */
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-size: 30px;
+            text-align: center;
+            
         }
-        
-        .flex_between {
-            justify-content: space-between !important;
+        .flex-container_row-reverse {
+        display: flex;
+        /* flex有的属性如下 */
+        /* flex-direction: row | row-reverse | column | column-reverse; */
+        /* row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。 */
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        font-size: 30px;
+        text-align: center;
+
+        }
+
+        .flex-item-left {
+            background-color: #f1f1f1;
+            padding: 10px;
+            flex: 50%;
+        }
+
+        .flex-item-right {
+            background-color: dodgerblue;
+            padding: 10px;
+            flex: 50%;
+        }
+
+        /* 响应式布局 - 制作一列布局而不是两列布局 */
+        @media (max-width: 800px) {
+
+            .flex-item-right,
+            .flex-item-left {
+                flex: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- 培训管理详情内容 -->
-    <div class="card_bg1 flex_row">
-        <div class="flex_column">
-            <div class="card_bg1">
-                xxxxxxxxxxxxxxxxxx
-            </div>
-            <div class="card_bg1">
-                xxxxxxxxxxxxxxxxxx
-            </div>
-            <div class="card_bg1">
-                xxxxxxxxxxxxxxxxxx
-            </div>
-        </div>
 
-        <div class="card_bg1">
-            xxxxxxxxxxxxxxxxxx
-        </div>
+    <h1>响应式弹性框</h1>
 
-        <div class="card_bg1">
-            xxxxxxxxxxxxxxxxxx
-        </div>
+    <p>在此例中，我们修改了 flex 的百分比，以针对不同的屏幕尺寸创建不同的布局。</p>
+    <p><b>请调整浏览器窗口的大小，来查看小于或等于 800 像素时的方向改变。</b></p>
+
+    <div class="flex-container">
+        <div class="flex-item-left">1</div>
+        <div class="flex-item-right">2</div>
     </div>
-
+    <div class="flex-container_row-reverse">
+        <div class="flex-item-left">1</div>
+        <div class="flex-item-right">2</div>
+    </div>
 </body>
 
 </html>
