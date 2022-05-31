@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+        /* div p {} 是定义<div>标签中所有的<p>标签，包括所有的子标签和孙辈的标签的样式 */
+        #divp div p {
+            background-color: red;
+            color: white;
+        }
+        /* div>p {} 是定义<div>标签中所有的子标签中的<p>标签，不包括孙辈的标签的样式 */
+        #divp1 div>p {
+            background-color: red;
+            color: white;
+        }
+        /* div+p {} 是定义所有紧跟在<div>标签后面的<p>标签的样式 */
+        #divp2 div+p {
+        background-color: red;
+        color: white;
+        }
+        /* div~p {} 是定义所有跟在<div>标签后面的<p>标签的样式 */
+        #divp3 div~p {
+        background-color: red;
+        color: white;
+        }
+        /* div .p {} 是定义<div>标签中所有class为p的标签的样式 */
+        #divp4 div .p {
+        background-color: red;
+        color: white;
+        }
+        /* div,p {} 是定义所有<div>标签和<p>标签的样式  divp5并不能控制*/
+        /* #divp5>div,p {
+        background-color: red;
+        color: white;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="divp">
+    <p class="p">我是class等于p的p标签</p>
+    <p>我是p标签</p>
+    <div>
+        <p>我是div的子标签</p>
+        <p class="p">我是div的子标签，我是class等于p的p标签</p>
+        <span>
+            <p>我是div的孙子标签</p>
+        </span>
+    </div>
+    <p>我是紧跟在div后面的p标签</p>
+    <p>我是在div标签后面的p标签</p>
+    </div>
+    <p>----------------------------------------------------------------------</p>
+    <div id="divp1">
+        <p class="p">我是class等于p的p标签</p>
+        <p>我是p标签</p>
+        <div>
+            <p>我是div的子标签</p>
+            <p class="p">我是div的子标签，我是class等于p的p标签</p>
+            <span>
+                <p>我是div的孙子标签</p>
+            </span>
+        </div>
+        <p>我是紧跟在div后面的p标签</p>
+        <p>我是在div标签后面的p标签</p>
+    </div>
+    <p>----------------------------------------------------------------------</p>
+    <div id="divp2">
+        <p class="p">我是class等于p的p标签</p>
+        <p>我是p标签</p>
+        <div>
+            <p>我是div的子标签</p>
+            <p class="p">我是div的子标签，我是class等于p的p标签</p>
+            <span>
+                <p>我是div的孙子标签</p>
+            </span>
+        </div>
+        <p>我是紧跟在div后面的p标签</p>
+        <p>我是在div标签后面的p标签</p>
+    </div>
+    <p>----------------------------------------------------------------------</p>
+    <div id="divp3">
+        <p class="p">我是class等于p的p标签</p>
+        <p>我是p标签</p>
+        <div>
+            <p>我是div的子标签</p>
+            <p class="p">我是div的子标签，我是class等于p的p标签</p>
+            <span>
+                <p>我是div的孙子标签</p>
+            </span>
+        </div>
+        <p>我是紧跟在div后面的p标签</p>
+        <p>我是在div标签后面的p标签</p>
+    </div>
+    <p>----------------------------------------------------------------------</p>
+    <div id="divp4">
+        <p class="p">我是class等于p的p标签</p>
+        <p>我是p标签</p>
+        <div>
+            <p>我是div的子标签</p>
+            <p class="p">我是div的子标签，我是class等于p的p标签</p>
+            <span>
+                <p>我是div的孙子标签</p>
+            </span>
+        </div>
+        <p>我是紧跟在div后面的p标签</p>
+        <p>我是在div标签后面的p标签</p>
+    </div>
+    <p>----------------------------------------------------------------------</p>
+    <div id="divp5">
+        <p class="p">我是class等于p的p标签</p>
+        <p>我是p标签</p>
+        <div>
+            <p>我是div的子标签</p>
+            <p class="p">我是div的子标签，我是class等于p的p标签</p>
+            <span>
+                <p>我是div的孙子标签</p>
+            </span>
+        </div>
+        <p>我是紧跟在div后面的p标签</p>
+        <p>我是在div标签后面的p标签</p>
+    </div>
+</body>
+
+
+</html>
