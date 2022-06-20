@@ -40,6 +40,31 @@ $git commit -c $ORIG_HEAD#表示用最后一次提交的提交信息来做为提
 
 ### 终极杀手 git filter-branch
 
+[git filter-branch - [ Git中文开发手册 \] - 在线原生手册 - php中文网](https://www.php.cn/manual/view/34955.html)
+
 假如说我们提交了 N 多次以后，突然发现我们这些提交的邮箱都写错了(╯°□°）╯︵ ┻━┻，这个时候如果使用之前提到的命令，估计还没改完就要累死了。这个时候我们就可以使用git filter-branch来重写分支，其可以批量的对每个提交执行我们预设的操作。
 
-git filter-branch命令使用的基本使用格式是git filter-branch --<各种filer> '命令' <修改的范围> ，不同的 filter 会提供给命令不同的输入和输出。比如，--msg-filter表示修改提交信息，原提交信息从标准输入读入，新提交信息输出到标准输出；--tree-filter表示修改文件列表等等。最后会有一个重写的范围。比如，git filter-branch --env-filter 'GIT_AUTHOR_EMAIL=john@example.com export GIT_AUTHOR_EMAIL' HEAD 就可以用来重写邮箱。建议在调用命令之前先啦出一个分支做尝试再在自己要修改的分支上执行操作。
+git filter-branch命令使用的基本使用格式是git filter-branch --<各种filer> '命令' <修改的范围> ，不同的 filter 会提供给命令不同的输入和输出。
+比如，
+
+--env-filter <command>
+
+如果您只需要修改提交将执行的环境，则可以使用此过滤器。具体来说，您可能需要重写作者/提交者名称/电子邮件/时间环境变量
+
+--msg-filter表示修改提交信息，原提交信息从标准输入读入，新提交信息输出到标准输出
+
+--tree-filter表示修改文件列表等等。最后会有一个重写的范围。
+
+--prune-empty表示如果修改后的提交为空则扔掉不要。在一次试运行中我发现虽然文件被删除了，但是还剩下个空的提交，就查了下 man 文档，找到了这个选项。
+
+-f是忽略备份。不加这个选项第二次运行这个命令时会出错，意思是 git 上次做了备份，现在再要运行的话得处理掉上次的备份。
+
+--all是针对所有的分支。
+
+--index-filter 'git rm -rf --cached --ignore-unmatch <file>使⽤带有git rm的index-filter会产⽣明显更快的版本。与使⽤rm⽂件名⼀样，如果⽂件不在提交树中，则git rm --cached filename将失败。如果你想“完全忘记”⼀个⽂件，它在输⼊历史记录时⽆关紧要，所以我们还添加了--ignore-unmatch
+
+
+
+比如，
+git filter-branch --env-filter 'GIT_AUTHOR_EMAIL=john@example.com export GIT_AUTHOR_EMAIL' HEAD
+就可以用来重写邮箱。建议在调用命令之前先啦出一个分支做尝试再在自己要修改的分支上执行操作。
