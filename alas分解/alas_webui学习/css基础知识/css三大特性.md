@@ -1,4 +1,30 @@
-### css层叠性
+### css 覆盖性
+
+就近原则来
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS层叠性</title>
+    <style>
+       div {
+           color: red;
+           font-size: 12px;
+       }
+       div {
+           color: pink;
+       }
+    </style>
+</head>
+<body>
+    <div>长江后浪推前浪,前浪死在沙滩上</div>
+</body>
+</html>
+```
 
 
 
