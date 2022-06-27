@@ -1,0 +1,49 @@
+*{
+    margin:0;
+    padding: 0;
+
+}
+.w {
+    width: 1200px;
+    /* 水平居中 */
+    margin: auto;
+    background-color: chartreuse;
+}
+
+.logo {
+    float: left;
+    width: 198px;
+    height: 42px;
+}
+.nav{
+    float: left;
+    margin-left: 60px;
+}
+/* 清楚原点 */
+li{
+    list-style: none;
+}
+/* 不加的话链接标签会显示一条线 */
+a{
+    text-decoration: none;
+}
+/* 给里面的li也加上浮动 */
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+}
+
+/* 要对a标签进行 赋予*/
+.nav ul li a {
+    display: block;
+    height: 42px;
+    padding: 0 10px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;   
+}
+
+.nav ul li a:hover {
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
