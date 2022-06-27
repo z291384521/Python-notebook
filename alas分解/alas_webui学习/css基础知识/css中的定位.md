@@ -306,7 +306,7 @@
 
 ![image-20220627230319289](img/css中的定位/image-20220627230319289.png)
 
-~~~
+~~~html
 <!DOCTYPE html>
 <html lang="en">
 <head>
