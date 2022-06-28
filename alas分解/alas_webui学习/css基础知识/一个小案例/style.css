@@ -244,6 +244,7 @@ a{
     width: 1225px;
 }
 .box-bd ul li {
+    position: relative;
     float: left;
     width: 228px;
     height: 270px;
@@ -252,7 +253,13 @@ a{
     margin-bottom: 15px;
    
 }
-.box-bd ul li img {
+.box-bd ul li em{
+    position: absolute;
+    /* 如果不给父亲相对坐标 儿子会偏移 */
+    top: 4px;
+    right: -4px;
+}
+.box-bd ul li > img {
     width: 100%;
 }
 .box-bd ul li h4 {
