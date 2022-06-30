@@ -174,7 +174,7 @@ border: 1px solid red; 没有顺序
 
 ① 盒子必须指定了宽度（width）。
 
- ② 盒子左右的外边距都设置为 auto 。
+② 盒子左右的外边距都设置为 auto 。
 
 一般初始化会写
 
@@ -222,4 +222,126 @@ margin: auto;  margin: 0 auto;
 
 ![image-20220630175706205](img/CSS中级 盒子模型/image-20220630175706205.png)
 
-##### 
+##### 行内块元素居中对齐
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>行内元素/行内块元素水平居中对齐</title>
+    <style>
+      .header {
+          width: 900px;
+          height: 200px;
+          background-color: pink;
+          margin: 100px auto;
+          text-align: center;
+      }
+      /* 行内元素或者行内块元素水平居中给其父元素添加 text-align:center 即可 */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>里面的文字</span>
+    </div>
+    <div class="header">
+        <img src="down.jpg" alt="">
+    </div>
+</body>
+</html>
+~~~
+
+
+
+#### 外边距合并 相邻块级元素(取两个值中的 较大者)
+
+上面的元素有 margin-bottom 下面的元素有margin-top就会产生合并
+
+![image-20220630222541718](img/CSS中级 盒子模型/image-20220630222541718.png)
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外边距合并-相邻块级元素垂直外边距合并</title>
+    <style>
+        .damao, .ermao {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .damao {
+            margin-bottom: 100px;
+        }
+        .ermao {
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="damao">大毛</div>
+    <div class="ermao">二毛</div>
+</body>
+</html>
+~~~
+
+
+
+![image-20220630222519011](img/CSS中级 盒子模型/image-20220630222519011.png)
+
+#### 外边距合并
+
+父子同时有边距会产生效果
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外边距合并-嵌套块级元素垂直外边距塌陷</title>
+    <style>
+        .father {
+            width: 400px;
+            height: 400px;
+            background-color: purple;
+            margin-top: 50px;
+            /* border: 1px solid red; */
+            /* border: 1px solid transparent; */
+            /* padding: 1px; */
+            /*overflow: hidden;*/
+        }
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>
+~~~
+
+
+
+![image-20220630223355747](img/CSS中级 盒子模型/image-20220630223355747.png)
+
+解决方案： 
+
+① 可以为父元素定义上边框。 
+
+② 可以为父元素定义上内边距。
+
+③ 可以为父元素添加 overflow:hidden。
