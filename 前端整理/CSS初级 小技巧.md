@@ -1,4 +1,4 @@
-### 一个小技巧 单行文字垂直居中的代码
+###  单行文字垂直居中的代码
 
 让文字的行高等于盒子的高度 就可以让文字在当前盒子内垂直居中
 
@@ -29,3 +29,13 @@
 ~~~
 
 ![image-20220630164135763](img/CSS初级 小技巧/image-20220630164135763.png)
+
+### 书写习惯
+
+~~~
+1布局定位属性：display / position / float / clear / visibility / overflow
+2自身属性：width / height / margin / padding / border / background
+3文本属性：color / font / text-decoration / text-align / vettical-align / white-space / break-word
+4其他属性(CSS3)：content / cursor / border-radius / box-shadow / text-shadow
+~~~
+
