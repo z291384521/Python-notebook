@@ -39,3 +39,45 @@
 4其他属性(CSS3)：content / cursor / border-radius / box-shadow / text-shadow
 ~~~
 
+### Cale
+
+需求我们的子盒子宽度永远比父盒子小30像素
+
+ width: calc(100% - 30px);
+
+括号里面可以 加减乘除 
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 过渡效果</title>
+    <style>
+        .father {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .son {
+            width: calc(100% - 30px);
+            height: 30px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需求我们的子盒子宽度永远比父盒子小30像素 -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>
+~~~
+

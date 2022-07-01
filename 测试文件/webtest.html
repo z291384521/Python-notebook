@@ -5,34 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>伪元素选择器before和after</title>
+    <title>Document</title>
     <style>
         div {
-            width: 200px;
-            height: 200px;
+            position: relative;
+            width: 500px;
+            height: 500px;
             background-color: pink;
+            transition: transform 1s;
         }
 
-        /* div::before 权重是2 */
-        div::before {
-            /* 这个content是必须要写的 */
-            display: inline-block;
-            content: '我';
-            width: 30px;
-            height: 40px;
-            background-color: purple;
-        }
-
-        div::after {
-            content: '小猪佩奇';
+        div:hover {
+            transform: rotate(360deg);
         }
     </style>
 </head>
 
 <body>
-    <div>
-        是
-    </div>
+    <div></div>
 </body>
 
 </html>
