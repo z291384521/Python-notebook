@@ -1,4 +1,4 @@
-### transform属性
+### transform: translate（位置）
 
 转换（tranform） 是CCS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、缩放
 
@@ -117,8 +117,6 @@ transform: translateY(n);
 </html>
 ~~~
 
-![image-20220701232406953](C:\Users\反转旋木\AppData\Roaming\Typora\typora-user-images\image-20220701232406953.png)
-
 ### transform : rotate（度数）
 
 ~~~
@@ -160,4 +158,246 @@ transform:rotate(度数)
 </html>
 ~~~
 
-![image-20220701232912860](C:\Users\反转旋木\AppData\Roaming\Typora\typora-user-images\image-20220701232912860.png)
+~~~
+transform-origin: x y;
+~~~
+
+- l注意后面的参数 x 和 y 用空格隔开
+- lx y 默认转换的中心点是元素的中心点 (50% 50%)
+- l还可以给x y 设置 像素 或者 方位名词 （top bottom left right center）
+
+
+
+
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            /* transition: transform 1s; */
+
+            transition: all 1s;
+            transform-origin: 10px 10px;
+        }
+
+        div:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
+~~~
+
+#### 案例
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            border: 1px solid pink;
+            margin: 10px;
+            float: left;
+        }
+        
+        div::before {
+            content: "黑马";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: hotpink;
+            transform: rotate(180deg);
+            transform-origin: left bottom;
+            transition: all 0.4s;
+        }
+        /* 鼠标经过div 里面的before 复原 */
+        
+        div:hover::before {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>
+~~~
+
+### transform:scale(**缩放**)
+
+~~~
+transform:scale(x,y);
+~~~
+
+- 注意其中的x和y用逗号分隔
+
+- transform:scale(1,1) ：宽和高都放大一倍，相对于没有放大
+
+- transform:scale(2,2) ：宽和高都放大了2倍
+
+- transform:scale(2) ：只写一个参数，第二个参数则和第一个参数一样，相当于 scale(2,2)
+
+- transform:scale(0.5,0.5)：缩小
+
+- sacle缩放最大的优势：可以设置转换中心点缩放，**默认以中心点缩放的，而且不影响其他盒子**
+
+  123没有动
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            /* transform-origin: left bottom; */
+        }
+        
+        div:hover {
+            /* 1. 里面写的数字不跟单位 就是倍数的意思 1 就是1倍  2就是 2倍 */
+            /* transform: scale(x, y); */
+            /* transform: scale(2, 2); */
+            /* 2. 修改了宽度为原来的2倍  高度 不变 */
+            /* transform: scale(2, 1); */
+            /* 3. 等比例缩放 同时修改宽度和高度，我们有简单的写法  以下是 宽度修改了2倍，高度默认和第一个参数一样*/
+            /* transform: scale(2); */
+            /* 4. 我们可以进行缩小  小于1 就是缩放 */
+            /* transform: scale(0.5, 0.5); */
+            /* transform: scale(0.5); */
+            /* 5. scale 的优势之处： 不会影响其他的盒子 而且可以设置缩放的中心点*/
+            /* width: 300px;
+            height: 300px; */
+            transform: scale(2);
+        }
+    </style> 
+</head>
+
+<body>
+    <div></div>
+    123123
+</body>
+
+</html>
+~~~
+
+~~~
+变话中心点
+~~~
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            /* transition: transform 1s; */
+
+            transition: all 1s;
+            transform-origin: bottom;
+        }
+
+        div:hover {
+            transform: scale(2, 2);
+
+            /* transform: rotate(360deg); */
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    123123
+</body>
+
+</html>
+~~~
+
+### 多个一起使用
+
+1. 同时使用多个转换，其格式为：transform: translate() rotate() scale() ...等，
+2. 其顺序会影转换的效果。（先旋转会改变坐标轴方向）
+3. **我们同时有位移和其他属性的时候，记得要将位移放到最前**
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            /* transition: transform 1s; */
+
+            transition: all 1s;
+            transform-origin: bottom;
+        }
+
+        div:hover {
+            transform: translate(150px, 50px) rotate(180deg) scale(1.2);
+
+            /* transform: rotate(360deg); */
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    123123
+</body>
+
+</html>
+~~~
+
