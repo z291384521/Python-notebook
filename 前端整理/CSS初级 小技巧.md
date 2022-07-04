@@ -81,3 +81,8 @@
 </html>
 ~~~
 
+### 浏览器私有前缀
+-moz-：代表 firefox 浏览器私有属性
+-ms-：代表 ie 浏览器私有属性
+-webkit-：代表 safari、chrome 私有属性
+-o-：代表 Opera 私有属性
