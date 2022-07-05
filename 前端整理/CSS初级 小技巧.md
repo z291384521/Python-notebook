@@ -86,3 +86,48 @@
 -ms-：代表 ie 浏览器私有属性
 -webkit-：代表 safari、chrome 私有属性
 -o-：代表 Opera 私有属性
+
+### 背景缩放background-size
+~~~
+background-size: 背景图片宽度 背景图片高度;
+~~~
+cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。
+
+contain把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            border: 2px solid red;
+            background: url(images/dog.jpg) no-repeat;
+            /* background-size: 图片的宽度 图片的高度; */
+            /* background-size: 500px 200px; */
+            /* 1.只写一个参数 肯定是宽度 高度省略了  会等比例缩放 */
+            /* background-size: 500px; */
+            /* 2. 里面的单位可以跟%  相对于父盒子来说的 */
+            /* background-size: 50%; */
+            /* 3. cover 等比例拉伸 要完全覆盖div盒子  可能有部分背景图片显示不全 */
+            /* background-size: cover; */
+            /* 4. contain 高度和宽度等比例拉伸 当宽度 或者高度 铺满div盒子就不再进行拉伸了 可能有部分空白区域 */
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <p></p>
+</body>
+
+</html>
+~~~
