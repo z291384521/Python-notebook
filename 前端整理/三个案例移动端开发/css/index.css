@@ -1,12 +1,15 @@
 body {
     width: 100%;
+    /* 为了不缩放变形 */
     min-width: 320px;
     max-width: 640px;
+    /* 盒子居中对齐 */
     margin: 0 auto;
     font-size: 14px;
     /* sans-serif 无衬线字体，即笔画结尾是平滑的字体。 */
+    /* 首先用苹果字体 然后黑体 */
     font-family: -apple-system, Helvetica, sans-serif;
-    color: #666;
+    background-color: #666;
     line-height: 1.5;
 }
 
@@ -90,19 +93,101 @@ div {
 
 /* 搜索 */ 
 .search-wrap{
+
     position: fixed;
+    /* 防止塌陷 */
     overflow: hidden;
     width: 100%;
     height: 44px;
     /* min-width 属性为给定元素设置最小宽度。它可以阻止 width 属性的应用值小于 min-width 的值。 */
     min-width: 320px;
     max-width: 640px;
+    /* background-color: aqua; */
 }
 
 .search-btn {
     position: absolute;
-    top: 0;
     left: 0;
+    top: 0;
     width: 40px;
     height: 44px;
+    /* background-color: #F63515; */
+}
+
+.search-btn::before{
+    content: "";
+    display: block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/s-btn.png) no-repeat;
+    background-size: 20px 18px;
+    margin: 14px 0 0 15px;
+}
+
+
+.search
+{
+    position: relative;
+    height: 30px;
+    margin: 0 50px;
+    margin-top: 7px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.jd-icon{
+
+    width: 18px;
+    height: 15px;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+    background: url(../images/jd.png) no-repeat;
+    background-size: 18px 15px;
+}
+.jd-icon::after{
+    content: "";
+    display: block;
+    position: absolute;
+    right: -8px;
+    top: 0px;
+    width: 1px;
+    height: 15px;
+    background-color: #ccc;
+
+}
+
+.sou{
+     position: absolute;
+    top: 8px;
+    left: 50px;
+    width: 18px;
+    height: 15px;
+    background-color: aquamarine;
+    background: url(../images/jd-sprites.png) no-repeat -81px 0px;
+    background-size: 200px auto;
+}
+
+.search-login {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 44px;
+    color: #fff;
+    /* 垂直居中 */
+    line-height: 44px;
+    /* background-color: #F63515; */
+}
+
+.slider img{
+    width: 100%;
+}
+
+.brand div{
+    float: left;
+    width: 33.3%;
+}
+.brand div img{
+    width: 100%;
 }
