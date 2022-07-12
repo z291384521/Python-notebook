@@ -1,0 +1,51 @@
+/* 个个界面都有的样式 头与尾部 */
+/* 版心 */
+.wrapper {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+.shortcut {
+    height: 52px;
+    background-color: #333;
+}
+
+.shortcut .wrapper {
+    height: 52px;
+    /* background-color: pink; */
+}
+
+.shortcut .wrapper ul {
+    float: right;
+}
+
+
+.shortcut .wrapper li  {
+float: left;
+line-height: 52px;
+}
+
+.shortcut .wrapper a{
+padding:0 16px;
+border-right: 1px solid #666;
+color: #dcdcdc;
+}
+.shortcut .wrapper a span{
+    display: inline-block;
+    margin-right: 8px;
+    width: 11px;
+    height: 16px;
+    background-image: url(../images/sprites.png);
+    background-position: -160px -70px;
+    /* 行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方  行内元素对齐克星*/
+    vertical-align: middle;
+}
+
+.shortcut .wrapper li:last-child a{
+    border: 0;
+}
+
+.header{
+    height: 70px;
+    background-color: pink;
+}
