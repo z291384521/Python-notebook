@@ -1,0 +1,10 @@
+/* 首页独有的样式 */
+.branner {
+    height: 500px;
+    background-color: #f5f5f5;
+}
+
+.branner .wrapper {
+    height: 500px;
+    background-color: pink;
+}
