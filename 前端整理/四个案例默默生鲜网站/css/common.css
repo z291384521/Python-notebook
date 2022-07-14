@@ -190,7 +190,7 @@
     padding-top: 59px;
     padding-left: 135px;
     height: 175px;
-    background-color: pink;
+    /* background-color: pink; */
     border-bottom: 3px solid #434343;
 }
 
@@ -200,7 +200,7 @@
     margin-right: 300px;
     width: 195px;
     height: 58px;
-    background-color: #20be11;
+    /* background-color: #20be11; */
     line-height: 58px;
 }
 
