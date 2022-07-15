@@ -1,0 +1,28 @@
+body {
+    background-color: #f7f7f8;
+}
+
+/* 这里需要给panding  */
+.main {
+    padding: 12px 11px 80px;
+}
+
+.pay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    /* 设置侧轴上的子元素排列方式 */
+    align-items: center;
+
+    height: 80px;
+    /* 为啥要加100%因为脱离父亲需要重新给宽度 */
+    width: 100%;
+
+    padding: 0px 11px;
+    background-color: pink;
+    border-top: 1px solid #ededed;
+
+}
