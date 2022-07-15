@@ -153,11 +153,14 @@
 }
 
 .good .bd li {
+    position: relative;
     margin-right: 8px;
     float: left;
     width: 304px;
     height: 405px;
     background-color: #f0f9f4;
+    /* 文字居中 */
+    text-align: center;
 }
 
 
@@ -167,4 +170,69 @@
 
 .good .bd li img {
     width: 304px;
+}
+
+.good .bd li h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.good .bd li b {
+    position: absolute;
+    left: 17px;
+    top: 18px;
+    width: 28px;
+    height: 51px;
+    border: 1px solid #27ba9b;
+    border-radius: 2px;
+    font-size: 18px;
+    color: #27ba9b;
+    font-weight: 400;
+    /* 调整文字行高代码 */
+    line-height: 24px;
+}
+
+
+.shengxian .hd {
+    height: 96px;
+    line-height: 96px;
+    background-color: #27ba9b;
+}
+
+.shengxian .hd h2 {
+    float: left;
+    font-size: 29px;
+    font-weight: 400;
+}
+
+.shengxian .hd ul {
+    float: right;
+    margin-right: 65px;
+}
+
+.shengxian .hd .more {
+    float: right;
+    color: #999;
+}
+
+.shengxian .hd .more::after {
+    content: '';
+    display: inline-block;
+    margin-left: 13px;
+    width: 7px;
+    height: 13px;
+    background-image: url(../images/sprites.png);
+    background-position: 0 -110px;
+    vertical-align: middle;
+}
+
+.shengxian .hd ul li {
+    float: left;
+}
+
+.shengxian .hd ul {
+    float: right;
+    margin-right: 65px;
 }
