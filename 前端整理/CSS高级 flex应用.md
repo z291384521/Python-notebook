@@ -321,12 +321,16 @@ flex 属性定义子项目分配剩余空间，用flex来表示占多少份数�
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+
+
         section {
             display: flex;
             width: 60%;
             height: 150px;
             background-color: pink;
             margin: 0 auto;
+            line-height: 150px;
+            text-align: center;
         }
 
         section div:nth-child(1) {
@@ -368,19 +372,21 @@ flex 属性定义子项目分配剩余空间，用flex来表示占多少份数�
 
 <body>
     <section>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>我给了对应宽高</div>
+        <div>我就是你们剩下的全部</div>
+        <div>我给了对应宽高</div>
     </section>
     <p>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
+        <span>1份</span>
+        <span>2份</span>
+        <span>3份</span>
     </p>
 </body>
 
 </html>
 ~~~
+
+![image-20220716161732932](img/CSS高级 flex应用/image-20220716161732932.png)
 
 #### align-self控制子项自己在侧轴上的排列方式
 

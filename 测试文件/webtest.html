@@ -3,14 +3,68 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        section {
+            display: flex;
+            width: 60%;
+            height: 150px;
+            background-color: pink;
+            margin: 0 auto;
+            line-height: 150px;
+            text-align: center;
+        }
+
+        section div:nth-child(1) {
+            width: 100px;
+            height: 150px;
+            background-color: red;
+        }
+
+        section div:nth-child(2) {
+            /* 对剩余空间进行操作 */
+            flex: 1;
+            background-color: green;
+        }
+
+        section div:nth-child(3) {
+            width: 100px;
+            height: 150px;
+            background-color: blue;
+        }
+
+        p {
+            display: flex;
+            width: 60%;
+            height: 150px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+
+        p span {
+            flex: 1;
+        }
+
+        p span:nth-child(2) {
+            flex: 2;
+            background-color: purple;
+        }
+    </style>
 </head>
 
 <body>
-
+    <section>
+        <div>我给了对应宽高</div>
+        <div>我就是你们剩下的全部</div>
+        <div>我给了对应宽高</div>
+    </section>
+    <p>
+        <span>1份</span>
+        <span>2份</span>
+        <span>3份</span>
+    </p>
 </body>
 
 </html>
