@@ -2,6 +2,9 @@
 @import url(./base.less);
 @import url(./normalize.less);
 
+// 变量: 存储37.5
+@rootSize: 37.5rem;
+
 body{
 background-color: #f0f0f0;
 }
@@ -9,9 +12,61 @@ background-color: #f0f0f0;
 // 主体类容
 
 .main{
-    padding-bottom: 50px;
-}
-// 尾部类容
-footer{
+    padding-bottom: (50 / @rootSize);
+    .banner{
+        // banner
+        // 为什么给高度 因为下面需要定位需要高度支持
+        height: (160 / @rootSize);
+        background-color: aquamarine;
+    }
+    // 活动标题
+    .title {
+        height: (40 / @rootSize);
+        line-height: (40 / @rootSize);
+        padding-left: (15 / @rootSize);
+        h4 {
+            font-size: (14 / @rootSize);
+            color: #3C3C3C;
+        }
+    }
+    // 活动
+    .item {
+        margin-bottom: (10 / @rootSize);
 
+        // 图
+        .pic {
+            position: relative;
+            height: (160 / @rootSize);
+                        // 收藏图标
+            i {
+                position: absolute;
+                top: (15 / @rootSize);
+                right: (18 / @rootSize);
+                font-size: (24 / @rootSize);
+                color: #fff;
+            }
+        }
+
+        // 文字
+        .txt {
+            padding: (10 / @rootSize) (15 / @rootSize);
+            background-color: #fff;
+        }
+    }
+}
+
+
+
+
+
+// 尾部类容
+// 底部工具栏
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    // height: (50 / 37.5rem);
+    height: (50 / @rootSize);
+    background-color: #FECA49;
 }

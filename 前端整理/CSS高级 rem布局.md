@@ -75,6 +75,64 @@ rem的基准是相对于html元素的字体大小。
 
 **rem的优点就是可以通过修改html（页面中只有一个html）里面的文字大小来改变页面中元素的大小可以整体控制**
 
+#### 在开发中使用rem布局需要对页面进行宽度除以10来
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 1. 不同的视口, HTML标签字号不同, 字号是视口宽度的1/10 */
+        @media (width:320px) {
+            html {
+                font-size: 32px;
+            }
+        }
+
+        @media (width:375px) {
+            html {
+                font-size: 37.5px;
+            }
+        }
+        @media (width:414px) {
+            html {
+                font-size: 41.4px;
+            }
+        }
+
+
+        /* 2. 书写盒子尺寸, 单位rem */
+        .box {
+            width: 5rem;
+            height: 3rem;
+            background-color: pink;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>
+~~~
+
+
+
+
+
 ### 媒体查询
 
 #### 什么是媒体查询
@@ -324,5 +382,4 @@ mediatype 查询类型
 
 </html>
 ~~~
-
 
