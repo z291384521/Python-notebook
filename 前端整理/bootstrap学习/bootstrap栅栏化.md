@@ -45,6 +45,44 @@ Bootstrap 使用四步曲：
 - 占据全部视口（viewport）的容器。
 - 适合单独得网页端手机开发
 
+### . container-row
+
+row类作用就是抵消container类的15px的内边距, row有-15px的外边距
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>栅格系统-类</title>
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <style>
+        div {
+            height: 50px;
+            background-color: pink;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 版心样式:自带左右各15px的padding -->
+    <div class="container">1</div>
+
+    <!-- row类作用就是抵消container类的15px的内边距, row有-15px的外边距 -->
+    <div class="container">
+        <div class="row">2</div>
+    </div>
+
+    <!-- 宽度100%:自带左右各15px的padding -->
+    <div class="container-fluid">3</div>
+</body>
+</html>
+~~~
+
+![image-20220720170745167](img/bootstrap使用/image-20220720170745167.png)
+
 ### Bootstrap 栅格系统
 
 |                    | 手机<768px | 平板>=768px | 中等屏幕>=992px | 宽屏设备>=1200px |
