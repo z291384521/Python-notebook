@@ -27,3 +27,23 @@ ul {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 22.4vw;
+  background-color: #ff0202;
+}
+.header .m-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 11.73333333vw;
+  padding: 0 3.2vw 0 4.8vw;
+  background-color: #fff;
+}
+.header .m-navbar .left .Navbar_logo {
+  font-size: 7.46666667vw;
+  color: #fb7299;
+}
