@@ -72,7 +72,9 @@
         // 2. 给开始按钮注册事件
         task_start = function () {
             timer = setInterval(
-                qs.innerHTML = arr[getRandom(0, arr.length - 1)], 25)
+                function () {
+                    qs.innerHTML = arr[getRandom(0, arr.length - 1)]
+                }, 25)
         }
         start.addEventListener('click', task_start)
     </script>
