@@ -74,9 +74,22 @@
             timer = setInterval(
                 function () {
                     qs.innerHTML = arr[getRandom(0, arr.length - 1)]
+                    if (arr.length === 1) {
+                        // console.log('没了')
+                        // start.disabled = true
+                        // end.disabled = true
+                        start.disabled = end.disabled = true
+                    }
                 }, 25)
         }
         start.addEventListener('click', task_start)
+        end.addEventListener('click', function () {
+            // 停止定时器
+            clearInterval(timer)
+            // 删除数组元素
+            arr.splice(random, 1)
+            // console.log(arr)
+        })
     </script>
 </body>
 
