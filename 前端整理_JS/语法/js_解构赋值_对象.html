@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //基础
+        let user = {
+            name: "小明",
+            age: 18
+        };
+        // 批量声明变量 name age
+        // 同时将数组单元值 1 2 3 依次赋值给变量 a b c
+        let {
+            name,
+            age
+        } = user;
+
+        console.log(name); // 小明
+        console.log(age); // 18
+        let obj = {
+            uname: '张三丰',
+            age: 22,
+            sex: '男',
+            score: 99,
+            index: 6,
+        }
+
+        let {
+            uname: userName,
+            sex
+        } = {
+            uname: '张三丰',
+            age: 22,
+            sex: '男',
+            score: 99,
+            index: 6,
+        }
+        console.log(userName, sex);
+        //张三丰 男
+        let {
+            dog: {
+                uname
+            },
+            dog
+        } = {
+            uname: '张三丰',
+            dog: {
+                uname: '小狗子',
+                age: 1,
+            },
+            age: 22,
+            sex: '男',
+            score: 99,
+            index: 6,
+        }
+        console.log(dog, uname);
+
+        function person({
+            uname,
+            age,
+            sex
+        }) {
+            // let uname = obj.uname;
+            // let age = obj.age;
+            // let sex = obj.sex;
+
+
+            console.log(`我叫${uname}今年${age}岁是${sex}性`);
+        }
+
+
+        person({
+            uname: '阿飞',
+            age: 22,
+            sex: '男'
+        })
+    </script>
+</body>
+
+</html>
