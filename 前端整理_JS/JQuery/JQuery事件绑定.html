@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0 30px 40px;
+        }
+
+        p {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>06-事件绑定</h3>
+    <p>在 jQuery 中以原生事件类型的名称为依据 , 封装了相对应的事件处理方法</p>
+    <ul>
+        <li>黑马程序员</li>
+        <li>北京校区</li>
+        <li>上海校区</li>
+        <li>广州校区</li>
+        <li>深圳校区</li>
+    </ul>
+    <h3>07-链式编程</h3>
+    <p>链式编程 通过点(.) 把多个操作连续的写下去, 形成和 链子 一样的结构</p>
+    <!-- 测试用 输入框 -->
+    <input type="text" class="text" />
+    <!-- 导入jQuery -->
+    <script src="./jquery/jquery-3.5.1.js"></script>
+    <script>
+        // 1.为 li 添加点击事件
+        $('li').click(function () {
+            console.log('click')
+            console.log(this)
+            let $this = $(this)
+            $this.css('backgroundColor', 'pink')
+        })
+
+        // 1. 为输入框分别绑定 获得焦点 和失去焦点事件
+        // $('.text').focus(function () {
+        //     console.log('获得焦点')
+        // })
+        // $('.text').blur(function () {
+        //     console.log('失去焦点')
+        // })
+        // 2. 使用链式编程一次性绑定 获得焦点 失去焦点 内容改变事件
+        $('.text')
+            .focus(function () {
+                console.log('获得焦点')
+            })
+            .blur(function () {
+                console.log('失去焦点')
+            })
+            .change(function () {
+                console.log('内容改变')
+            })
+        // 3. 测试jQuery方法的返回值
+        let $test = $('.test')
+        let $test2 = $test.focus(function () {
+            console.log('获得焦点')
+        })
+
+        console.log($test === $test2)
+    </script>
+</body>
+
+</html>
