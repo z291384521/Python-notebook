@@ -29,6 +29,37 @@
     </div>
     <!-- 导入jQuery -->
     <script src="./jquery/jquery-3.5.1.js"></script>
+    <script>
+        //箭头缩放
+        $(".center a").mouseenter(function () {
+            $(this).css('transform', 'scale(1.1)')
+        })
+        //离开时候 还原位置
+        $(".center a").mouseleave(function () {
+            $(this).css('transform', 'scale(1.0)')
+        })
+        // 默认隐藏左侧按钮
+        $('.left').css('display', 'none')
+
+        let index = 1
+        $('.right').click(function () {
+            index++
+            $('.cover').attr('src', `./images/${index}.png`)
+            $('.left').css('display', 'block')
+            if (index == 5) {
+                $(this).css('display', 'none')
+            }
+        })
+        $('.left').click(function () {
+            index--
+            $('.cover').attr('src', `./images/${index}.png`)
+            $('.right').css('display', 'block')
+            if (index == 1) {
+                $(this).css('display', 'none')
+            }
+
+        })
+    </script>
 </body>
 
 </html>
