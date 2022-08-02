@@ -1,7 +1,3 @@
-
-
-
-
 ### **$.get()函数的语法**
 
 ~~~
@@ -45,3 +41,20 @@ $.post(url, [data], [callback])
 | url        | string       | 是           | 提交数据的地址           |
 | data       | object       | 否           | 要提交的数据             |
 | callback   | function     | 否           | 数据提交成功时的回调函数 |
+
+~~~
+  <script>
+    $(function () {
+      $('#btnPOST').on('click', function () {
+        $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' }, function (res) {
+          console.log(res)
+        })
+      })
+    })
+  </script>
+~~~
+
+### $.ajax发起
+
+
+

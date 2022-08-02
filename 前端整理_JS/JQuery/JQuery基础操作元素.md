@@ -331,5 +331,60 @@ $(this).css('color', 'red').sibling().css('color', '');
 $('div').hide();  // 页面中所有的div全部隐藏，不用循环操作
 ~~~
 
+###  jQuery 拷贝对象
 
+	jQuery中分别为我们提供了两套快速获取和设置元素尺寸和位置的API，方便易用，内容如下。
 
+**语法**
+
+![event](img/JQuery基础操作元素/event.png)
+
+**演示代码**
+
+```javascript
+ <script>
+        $(function() {
+   			// 1.合并数据
+            var targetObj = {};
+            var obj = {
+                id: 1,
+                name: "andy"
+            };
+            // $.extend(target, obj);
+            $.extend(targetObj, obj);
+            console.log(targetObj);
+   
+   			// 2. 会覆盖 targetObj 里面原来的数据
+            var targetObj = {
+                id: 0
+            };
+            var obj = {
+                id: 1,
+                name: "andy"
+            };
+            // $.extend(target, obj);
+            $.extend(targetObj, obj);
+            console.log(targetObj); 
+        })
+    </script>
+```
+
+##  jQuery 多库共存
+
+	实际开发中，很多项目连续开发十多年，jQuery版本不断更新，最初的 jQuery 版本无法满足需求，这时就需要保证在旧有版本正常运行的情况下，新的功能使用新的jQuery版本实现，这种情况被称为，jQuery 多库共存。
+
+**语法**
+
+![noconfig](img/JQuery基础操作元素/noconfig.png)
+
+**演示代码**
+
+```javascript
+<script>
+	$(function() {
+  		// 让jquery 释放对$ 控制权 让用自己决定
+  		var suibian = jQuery.noConflict();
+  		console.log(suibian("span"));
+	})
+</script>
+```

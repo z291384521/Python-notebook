@@ -185,3 +185,33 @@
 </body>
 ~~~
 
+##  jQuery 事件对象
+
+​	jQuery 对DOM中的事件对象 event 进行了封装，兼容性更好，获取更方便，使用变化不大。事件被触发，就会有事件对象的产生。
+
+**语法**
+
+![event](img/JQuery事件注册/event.png)
+
+**演示代码**
+
+```javascript
+<body>
+    <div></div>
+
+	<script>
+        $(function() {
+            $(document).on("click", function() {
+                console.log("点击了document");
+            })
+            $("div").on("click", function(event) {
+                // console.log(event);
+                console.log("点击了div");
+                event.stopPropagation();
+            })
+        })
+    </script>
+</body>
+```
+
+注意：jQuery中的 event 对象使用，可以借鉴 API 和 DOM 中的 event 。
