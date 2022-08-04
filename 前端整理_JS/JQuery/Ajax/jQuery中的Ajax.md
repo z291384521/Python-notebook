@@ -56,5 +56,39 @@ $.post(url, [data], [callback])
 
 ### $.ajax发起
 
+GET
 
+~~~
+        $.ajax({
+          type: 'GET',
+          url: 'http://www.liulongbin.top:3006/api/getbooks',
+          data: {
+            id: 1
+          },
+          success: function (res) {
+            console.log(res)
+          }
+        })
+      })
+~~~
+
+
+
+POST
+
+~~~
+        $.ajax({
+          type: 'POST',
+          url: 'http://www.liulongbin.top:3006/api/addbook',
+          data: {
+            bookname: '史记',
+            author: '司马迁',
+            publisher: '上海图书出版社'
+          },
+          success: function (res) {
+            console.log(res)
+          }
+        })
+      })
+~~~
 

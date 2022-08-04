@@ -91,8 +91,74 @@ enctype
 
 ②<form>表单同步提交后，**页面之前的状态和数据会丢失**。
 
+### Ajax监听方法
 
+~~~
+  <form action="/login" id="f1">
+    <input type="text" name="user_name" />
+    <input type="password" name="password" />
+    <button type="submit">提交</button>
+  </form>
 
+  <script>
+    $(function () {
+      // 第一种方式
+      // $('#f1').submit(function () {
+      //   alert('监听到了表单的提交事件')
+      // })
 
+      // 第二种方式
+      $('#f1').on('submit', function () {  
+        alert('监听到了表单的提交事件2')
+      })
+    })
+  </script>
+~~~
 
-### 表单的组成部分
+### Ajax阻止表单的默认提交行为 即点击提交以后不跳转
+
+~~~
+    $(function () {
+      // 第一种方式
+      // $('#f1').submit(function (e) {
+      //   alert('监听到了表单的提交事件')
+      //   e.preventDefault()
+      // })
+
+      // 第二种方式
+      $('#f1').on('submit', function (e) {  
+        alert('监听到了表单的提交事件2')
+        e.preventDefault()
+      })
+    })
+~~~
+
+### Ajax获得表单中数据serialize()函数示例
+
+~~~
+  <form action="/login" id="f1">
+    <input type="text" name="user_name" />
+    <input type="password" name="password" />
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    $(function () {
+      // 第一种方式
+      /* $('#f1').submit(function (e) {
+        e.preventDefault()
+        var data = $(this).serialize()
+        console.log(data)
+      }) */
+
+      // 第二种方式
+      $('#f1').on('submit', function (e) {
+        e.preventDefault()
+        var data = $('#f1').serialize()
+        console.log(data)
+      })
+    })
+  </script>
+~~~
+
+user_name=1&password=23
