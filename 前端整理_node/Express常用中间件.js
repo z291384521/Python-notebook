@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
 
 app.post('/user', (req, res) => {
     // 在服务器，可以使用 req.body 这个属性，来接收客户端发送过来的请求体数据
-    // 默认情况下，如果不配置解析表单数据的中间件，则 req.body 默认等于 undefined
+    // 默认情况下，如果不配置解析表单数据的中间件，发body用json发消息过来 默认等于 undefined
     console.log(req.body)
     res.send('ok')
 })
@@ -35,6 +35,7 @@ app.post('/user', (req, res) => {
 
 app.post('/book', (req, res) => {
     // 在服务器端，可以通过 req,body 来获取 JSON 格式的表单数据和 url-encoded 格式的数据
+    // postman为body下面的 x-www-form-urlencoded
     console.log(req.body)
     res.send('ok')
 })
