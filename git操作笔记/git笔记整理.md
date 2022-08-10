@@ -175,6 +175,16 @@ id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告�
 
 然后本地与远程仓库关联
 
+~~~~
+#这句话意思就是 添加远程仓库 别名为 origin
+git remote add origin https://github.com/z291384521/zzzzzzzzzzzzzzz.git
+#-u表示把本地分支和远程分支进行关联，只在第一次推送的时候需要带-u参数
+#git push -u 远程仓库的别名本地分支名称:远程分支名称
+#it push -u origin master:master
+#如果希望远程分支的名称和本地分支名称保持一致，可以对命令进行简化
+git push -u origin master
+~~~~
+
 git remote add origin https://github.com/z291384521/zzzzzzzzzzzzzzz.git
 
 git push -u origin master
@@ -188,6 +198,12 @@ git push -u origin master
 3、如果输⼊$ git remote rm origin 还是报错的话，error: Could not remove config section 'remote.origin'. 我们需要修改gitconfig⽂
 件的内容
 4、找到你的github的安装路径，我的是找到⼀个名为gitconfig的⽂件，打开它把⾥⾯的[remote "origin"]那⼀⾏删掉就好了！
+
+#### 远程分支操作
+
+
+
+
 
 ## 中级Git 分支
 
