@@ -201,9 +201,32 @@ git push -u origin master
 
 #### 远程分支操作
 
+##### 查看远程仓库中所有的分支列表
 
+~~~
+git remote show 远程仓库名称
+~~~
 
+#####  跟踪分支
 
+跟踪分支指的是：从远程仓库中，把远程分支下载到本地仓库中。需要运行的命令如下
+
+~~~
+#从远程仓库中，把对应的远程分支下载到本地仓库，保持本地分支和远程分支名称相同git checkout远程分支的名称
+#示例:
+git checkout pay
+#从远程仓库中，把对应的远程分支下载到本地仓库，并把下载的本地分支进行重命名git checkout -b 本地分支名称远程仓库名称/远程分支名称
+#示例:
+git checkout -b payment origin/pay
+~~~
+
+##### 删除远程分支
+
+#删除远程仓库中，指定名称的远程分支
+git push 远程仓库名称--delete远程分支名称
+
+#示例:
+git push origin --delete pay
 
 ## 中级Git 分支
 
