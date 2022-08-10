@@ -73,15 +73,41 @@ git commit -a -m "描述消息"
 git rm -f index.js
 ~~~
 
-
-
 ② 只从 Git 仓库中移除指定的文件，但保留工作区中对应的文件
 
 ~~~
 git rm --cached index.js
 ~~~
 
+##### 查看提交历史
 
+~~~
+#按时间先后顺序列出所有的提交历史，最近的提交排在最上面
+git log
+#只展示最新的两条提交历史，数字可以按需进行填写
+git log -2
+#在一行上展示最近两条提交历史的信息
+git log -2 --pretty=oneline
+
+#在一行上展示最近两条提交历史的信息，并自定义输出的格式
+#h提交的简写哈希值‰an作者名字―‰ar作者修订日期，按多久以前的方式显示――‰s提交说明
+git log -2 --pretty=format : "%h | %an | %ar |%s"
+
+~~~
+
+##### 回退到指定的版
+
+~~~
+#在一行上展示所有的提交历史
+git log --pretty=oneline
+#使用git reset --hard命令，根据指定的提交ID回退到指定版本
+git reset --hard <CommitID>
+#在旧版本中使用git reflog --pretty=oneline命令，查看命令操作的历史
+git reflog --pretty=oneline
+#再次根据最新的提交ID，跳转到最新的版本
+git reset --hard <CommitID>
+
+~~~
 
 
 
@@ -119,6 +145,20 @@ C:/Users/用户名文件夹/.gitconfig 文件中。这个文件是 Git 的全局
 
 ### github
 
+####  常见的 5 种开源许可协议
+
+① BSD（Berkeley Software Distribution） 
+
+② Apache Licence 2.0
+
+③ GPL（GNU General Public License） ⚫ 具有传染性的一种开源协议，不允许修改后和衍生的代码做为闭源的商业软件发布和销售 ⚫ 使用 GPL 的最著名的软件项目是：Linux 
+
+④ LGPL（GNU Lesser General Public License） 
+
+⑤ MIT（Massachusetts Institute of Technology, MIT） ⚫ 是目前限制最少的协议，唯一的条件：在修改后的代码或者发行包中，必须包含原作者的许可信息 ⚫ 使用 MIT 的软件项目有：jquery、Node.js
+
+#### 开源项目托管平台
+
 下载ssh生成计算机密钥
 
 ssh-keygen -t rsa –C “邮箱”
@@ -149,7 +189,66 @@ git push -u origin master
 件的内容
 4、找到你的github的安装路径，我的是找到⼀个名为gitconfig的⽂件，打开它把⾥⾯的[remote "origin"]那⼀⾏删掉就好了！
 
+## 中级Git 分支
+
+###  master 主分支
+
+在初始化本地 Git 仓库的时候，Git 默认已经帮我们创建了一个名字叫做 master 的分支。通常我们把这个 master 分支叫做主分支。
+
+ 在实际工作中，master 主分支的作用是：**用来保存和记录整个项目已完成的功能代码**。 因此，不允许程序员直接在 master 分支上修改代码，因为这样做的风险太高，容易导致整个项目崩溃
+
+###  功能分支
+
+由于程序员不能直接在 master 分支上进行功能的开发，所以就有了功能分支的概念。
+
+功能分支指的是专门用来开发新功能的分支，它是临时从 master 主分支上分叉出来的，当新功能开发且测试 完毕后，最终需要合并到 master 主分支上，如图所示
+
+![image-20220810103557637](img/git笔记整理/image-20220810103557637.png)
+
+### 查看分支列表
+
+~~~
+git branch 
+~~~
+
+分支名字前面的 * 号表示当前**所处的分支**
+
+### 创建新分支
+
+~~~
+git branch 分支名称
+~~~
+
+### 切换分支
+
+~~~
+git checkout 分支名称
+~~~
+
+### 分支的快速创建和切换
+
+~~~
+git checkout -b 分支名称"  越等越 创建加切换
+~~~
+
+### 合并分支
+
+功能分支的代码开发测试完毕之后，可以使用如下的命令，将完成后的代码合并到 master 主分支上：
+
+~~~
+#1．切换到master 分支git checkout master
+#2、在 master分支上运行 git merge命令，
+将 login 分支的代码合并到master分支git merge login
+~~~
+
+### 删除分支
+
+~~~
+git branch -d “分支名称”
+~~~
 
 
 
+### 遇到冲突时的分支合并 
 
+如果在两个不同的分支中，对同一个文件进行了不同的修改，Git 就没法干净的合并它们。 此时，我们需要打开 这些包含冲突的文件然后手动解决冲突
