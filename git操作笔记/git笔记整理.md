@@ -183,6 +183,8 @@ git remote add origin https://github.com/z291384521/zzzzzzzzzzzzzzz.git
 #it push -u origin master:master
 #如果希望远程分支的名称和本地分支名称保持一致，可以对命令进行简化
 git push -u origin master
+#推分支也是
+git push --set-upstream origin master 越等越   git push -u origin newbranch
 ~~~~
 
 git remote add origin https://github.com/z291384521/zzzzzzzzzzzzzzz.git
@@ -201,7 +203,34 @@ git push -u origin master
 
 #### 远程分支操作
 
+##### 查看远程仓库中所有的分支列表
 
+~~~
+git remote show 远程仓库名称
+~~~
+
+#####  跟踪分支
+
+跟踪分支指的是：从远程仓库中，把远程分支下载到本地仓库中。需要运行的命令如下
+
+~~~
+#从远程仓库中，把对应的远程分支下载到本地仓库，保持本地分支和远程分支名称相同git checkout远程分支的名称
+#示例:
+git checkout pay
+#从远程仓库中，把对应的远程分支下载到本地仓库，并把下载的本地分支进行重命名git checkout -b 本地分支名称远程仓库名称/远程分支名称
+#示例:
+git checkout -b payment origin/pay
+~~~
+
+##### 删除远程分支
+
+#删除远程仓库中，指定名称的远程分支
+git push 远程仓库名称--delete远程分支名称
+
+#示例:
+git push origin --delete pay
+
+#####  将本地分支推送到远程仓库
 
 
 
