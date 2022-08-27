@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一层域 默认window
+        ;
+        (function () {
+            console.log(this);
+        })()
+        // 默认绑定 打印调用者window 全局的不知道是谁
+        var name = "小白window方法里面的"
+        function girl() {
+            var name = "小白girl()方法里面的"
+            console.log(this.name)
+        }
+        girl()
+        // 隐式绑定
+        var girl = {
+            name: "小红",
+            height: "160",
+            weight: "100",
+            detail: function () {
+                console.log('姓名:' + this.name);
+                console.log('身高:' + this.height + '厘米');
+                console.log('体重:' + this.weight + '斤');
+            }
+        }
+        girl.detail()
+        // 强绑定
+        var girlName = {
+            name: "小红",
+            sayName: function () {
+                console.log("我的女友是" + this.name)
+            }
+        }
+        var girl1 = {
+            name: "小白",
+
+        }
+        var girl3 = {
+            name: "小黑"
+        }
+        girlName.sayName.call(girl1)
+        girlName.sayName.call(girl3)
+
+        // 构造函数绑定
+        function Lover(name) {
+            this.name = name
+            this.sayName = function () {
+                console.log("我的老婆是" + this.name)
+            }
+        }
+
+        var naopo = new Lover("小红")
+        naopo.sayName()
+    </script>
+</body>
+
+</html>
