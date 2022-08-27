@@ -6,7 +6,7 @@
 
 ```html
 <script>
-  // 普通函数
+  // 默认绑定 打印调用者window
   function sayHi() {
     console.log(this);
   }
