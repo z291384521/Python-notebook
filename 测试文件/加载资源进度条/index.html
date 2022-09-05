@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>这是一个进度条</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html,
+        body {
+            -ms-touch-action: none;
+            background: #000000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainDiv" style="margin: auto;width: 100%;height: 100%;" class="egret-player" data-entry-class="Main"
+        data-orientation="auto" data-scale-mode="noScale" data-frame-rate="60" data-content-width="1920"
+        data-content-height="1280" data-multi-fingered="2" data-show-fps="true" data-show-log="false"
+        data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+        <div id="logDiv" style="position:absolute;width: 100%;height: 100%;">
+            <table align="center" id="loadLabel" style="color: #28ee01;font-size: 20px;padding-top: 150px">
+                <tr>
+                    <td align="center"><img id="bgImg" src="logoimg.png?v=1" alt=""></td>
+                </tr>
+                <tr>
+                    <td id="label" style="text-align: center">首次加载时间较长……请耐心等待^-^<br />没啥logo用的米哈游的</td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <div style="width: 100px;height: 6px;background-color: #ffffff">
+                            <div id="bar1" style="width: 30px;height: 6px;background-color: #ff7700;float:left">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <div align="center" style="width: 100px;height: 6px;background-color: #ffffff">
+                            <div id="bar2" style="width: 70px;height: 6px;background-color: #28ee01;float:left">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+    <script>
+        var bar1Width = 0;
+        var bar2Width = 0;
+        // 初始变量
+        var setIntervalId = 0;
+        function updateBar() {
+            var bar1 = document.getElementById("bar1");
+            bar1Width += 30;
+            if (bar1Width > 100) {
+                bar1Width = 0;
+            }
+            bar1.style.width = bar1Width + "px";
+            var bar2 = document.getElementById("bar2");
+            bar2Width += 3;
+            if (bar2Width > 100) {
+                return;
+            }
+            bar2.style.width = bar2Width + "px";
+        }
+        function starBar() {
+            // 开启定时
+            setIntervalId = self.setInterval(updateBar, 100);
+            // window.clearInterval(int);
+        }
+        // starBar()
+        window.onload = function () {
+            console.log("方法用于在网页加载完毕后立刻执行的操作")
+            if ((typeof (Worker) !== "undefined")) {
+                starBar();
+                // window["loginType"] = 1;////测试 0=测试 1 正式
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = false;
+                s.addEventListener('load', function () {
+                    s.parentNode.removeChild(s);
+                    s.removeEventListener('load', arguments.callee, false);
+                }, false);
+                // s.src = 'index.js?v=' + Math.random();
+                // 为了断点顺利改下
+                s.src = 'index.js?v=1';
+                document.body.appendChild(s);
+            }
+        }
+    </script>
+</body>
+
+</html>
