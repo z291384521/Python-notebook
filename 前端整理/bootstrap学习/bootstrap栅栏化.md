@@ -277,10 +277,69 @@ xs-extra small：超小； sm-small：小；  md-medium：中等； lg-large：�
 
 #### 响应式工具
 
+![image-20220814215137593](img/bootstrap栅栏化/image-20220814215137593.png)
+
+
+
+
+
+
+
 | 类名       | xs超小屏 | sm小屏 | md中屏 | lg大屏 |
 | ---------- | -------- | ------ | ------ | ------ |
 | .hidden-xs | 隐藏     | 可见   | 可见   | 可见   |
 | .hidden-sm | 可见     | 隐藏   | 可见   | 可见   |
 | .hidden-md | 可见     | 可见   | 隐藏   | 可见   |
 | .hidden-lg | 可见     | 可见   | 可见   | 隐藏   |
+| .visible-xs-* | 可见 | 隐藏 | 隐藏 | 隐藏 |
+| .visible-sm-* | 隐藏 | 可见 | 隐藏 | 隐藏 |
+| .visible-md-* | 隐藏 | 隐藏 | 可见 | 隐藏 |
+| .visible-lg-* | 隐藏 | 隐藏 | 隐藏 | 可见 |
 
+~~~html
+div class="container" style="padding: 40px;">
+    <div class="row visible-on">
+        <div class="col-xs-6 col-sm-3" style="background-color: #dedef8;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            <span class="hidden-xs">特别小型</span>
+            <span class="visible-xs">✔ 在特别小型设备上可见</span>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="background-color: #dedef8;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            <span class="hidden-sm">小型</span>
+            <span class="visible-sm">✔ 在小型设备上可见</span>
+        </div>
+        <div class="clearfix visible-xs"></div>
+        <div class="col-xs-6 col-sm-3" style="background-color: #dedef8;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            <span class="hidden-md">中型</span>
+            <span class="visible-md">✔ 在中型设备上可见</span>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="background-color: #dedef8;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            <span class="hidden-lg">大型</span>
+            <span class="visible-lg">✔ 在大型设备上可见</span>
+        </div>
+    </div>
+</div>
+~~~
+
+
+
+
+
+从 v3.2.0 版本起，形如 .visible-*-* 的类针对每种屏幕大小都有了三种变体，每个针对 CSS 中不同的 display 属性，列表如下：
+
+| 类组                    | CSS display            |
+| :---------------------- | :--------------------- |
+| .visible-*-block        | display: block;        |
+| .visible-*-inline       | display: inline;       |
+| .visible-*-inline-block | display: inline-block; |
+
+因此，以超小屏幕（xs）为例，可用的 .visible-*-* 类是：.visible-xs-block、.visible-xs-inline 和 .visible-xs-inline-block。
+
+.visible-xs、.visible-sm、.visible-md 和 .visible-lg 类也同时存在。但是从 v3.2.0 版本开始不再建议使用。除了 <table> 相关的元素的特殊情况外，它们与 .visible-*-block 大体相同。
+
+
+
+![image-20220814215916814](img/bootstrap栅栏化/image-20220814215916814.png)
