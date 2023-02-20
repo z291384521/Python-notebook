@@ -10,42 +10,31 @@
 dpkg -l | grep ssh
 ~~~
 
-进程
+进程查询
 
 ~~~shell
 ps -e | grep ssh
 ~~~
 
-启动
+安装ssh
 
-~~~
-sudo /etc/init.d/ssh stop
-sudo /etc/init.d/ssh start
+~~~shell
+sudo apt-get install openssh-serve
 ~~~
 
 ~~~
 sudo chomd 777 /etc/ssh/sshd_config
+//插入如下语句
 PermitRootLogin yes
 PasswordAuthentication yes
 ~~~
 
-
-
-
-
-
-
-
-
-安装ssh
-
-~~~
-sudo apt-get install openssh-server
-~~~
+~~~~
+sudo /etc/init.d/ssh stop
+sudo /etc/init.d/ssh start
+~~~~
 
 第二部取消限制
-
-
 
 换源
 
@@ -70,8 +59,6 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted 
 # 预发布软件源，不建议启用
 # deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
-
-
 ~~~
 
 
@@ -79,12 +66,6 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted 
 
 
 安装魔兽环境
-
-第一个安装aptitude 
-
-~~~
-aptitude与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude在处理依赖问题上更佳一些。举例来说，aptitude在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。
-~~~
 
 ~~~
 sudo aptitude  install git cmake make gcc g++ clang libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev mysql-server libboost-all-dev
