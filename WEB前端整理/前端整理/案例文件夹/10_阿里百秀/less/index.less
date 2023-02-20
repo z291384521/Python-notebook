@@ -1,0 +1,114 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    background-color: #fff;
+}
+
+.nav1 {
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 修改container的最大宽度为 1280 根据设计稿来走的 */
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+
+.logo {
+    background-color: #429ad9;
+
+    img {
+        display: block;
+        /* width: 100%; */
+        /* logo图片不需要缩放 */
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    span {
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+    }
+
+
+}
+
+
+
+
+
+
+.row .nav1 a {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    font-size: 16px;
+
+    &:hover {
+        text-decoration: none;
+        background-color: #fff;
+        color: #333;
+    }
+
+    &::before {
+        vertical-align: middle;
+        padding-right: 5px;
+    }
+
+}
+
+@media screen and (max-width:991px) {
+    .nav1 li {
+        float: left;
+        width: 20%;
+    }
+
+    article {
+        margin-top: 10px;
+    }
+}
+
+/* 当我们进入 超小屏幕的时候 我们 nav 文字会变成14px  */
+
+@media screen and (max-width: 767px) {
+    .nav1 li a {
+        font-size: 14px;
+        padding-left: 3px;
+    }
+
+    /* 当我们处于超小屏幕 news 第一个li 宽度为 100%  剩下的小li  各 50% */
+    .news li:nth-child(1) {
+        width: 100% !important;
+    }
+
+    .news li {
+        width: 50% !important;
+    }
+
+    .publish h3 {
+        font-size: 14px;
+    }
+}

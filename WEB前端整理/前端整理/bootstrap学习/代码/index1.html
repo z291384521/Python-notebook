@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+        .row div {
+            height: 300px;
+            background-color: purple;
+        }
+
+        .row div:nth-child(3) {
+            background-color: pink;
+        }
+
+        span {
+            font-size: 50px;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <span class="visible-lg">我会显示哦</span>
+            </div>
+            <div class="col-xs-3">2</div>
+            <div class="col-xs-3 hidden-md hidden-xs">我会变魔术哦</div>
+            <div class="col-xs-3">4</div>
+        </div>
+
+
+</html>

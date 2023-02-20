@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 箭头函数中的 `this` 与普通函数完全不同，
+        // 也不受调用方式的影响，事实上箭头函数中并不存在 `this` ！
+        // 箭头函数中访问的 `this` 不过是箭头函数所在作用域的 `this` 变量。
+
+
+        // document.addEventListener('click', function () {
+        //     window.setInterval(() => {
+        //         console.log(this);
+        //     }, 1000)
+        // });
+        // 事件处理函数 少用箭头函数指向的是window
+        document.addEventListener('click', () => {
+            console.log(this);
+        });
+
+        // 构造函数：箭头函数不能当做构造函数的使用
+        let Person = (uname, age) => {
+            this.uname = uname;
+            this.age = age;
+        }
+        // new Person();
+        //    报错js_this箭头函数.html:33
+
+        //    Uncaught TypeError: Person is not a constructor
+        //    at
+    </script>
+</body>
+
+</html>

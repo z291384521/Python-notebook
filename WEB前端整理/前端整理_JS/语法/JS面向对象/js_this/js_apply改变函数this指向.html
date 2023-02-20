@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="">
+        // 普通函数
+        function sayHi() {
+            console.log(this);
+        }
+
+        let user = {
+            name: '小明',
+            age: 18
+        }
+
+        let student = {
+            name: '小红',
+            age: 16
+        }
+
+        // 调用函数并指定 this 的值
+        //1. 使用 `call` 方法调用函数时，第1个参数为 `this` 指定的值
+        sayHi.apply(user); // this 值为 user
+        sayHi.apply(student); // this 值为 student
+
+
+        // 求和函数
+        function counter(x, y) {
+            return x + y;
+        }
+
+        // 调用 counter 函数，并传入参数
+        // 1. 使用 `apply` 方法调用函数时，第1个参数为 `this` 指定的值
+        // 2. `apply` 方法第2个参数为数组，数组的单元值依次自动传入函数做为函数的参数
+        let result = counter.apply(null, [5, 10]);
+        console.log(result);
+    </script>
+</body>
+
+</html>

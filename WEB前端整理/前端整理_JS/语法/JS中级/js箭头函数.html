@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 箭头函数
+        let fn = (a, b) => {
+            return a + b;
+        }
+
+        let re = fn(1, 2);
+
+        console.log(re);
+        //如果参数只有一个就可以省略小括号
+        let fu = a => {
+            return a * a;
+        }
+        // 注意：如果函数体只有一行代码，那么可以省略大括号，
+        // 如果把打括号省略的话，会自动的返回结果，不需要写return
+        let fn2 = a => a * a;
+        console.log(fn2(6));
+
+        // 箭头不存在预解析，所以必须先定义再调用
+        //fn3(); //报错没有找的合适的
+        let fn3 = () => {
+            console.log('aaa');
+        }
+        fn3();
+
+        // 2、箭头函数中，不存在arguments
+        let fn4 = (...a) => {
+            console.log(a);
+        };
+        fn4(1, 2, 3);
+
+        // 3、箭头函数认为不存在this，箭头函数中的this指向的是上级作用域的this
+        // 箭头函数中的this指向箭头函数所在作用域的this
+        // 如果涉及到this使用的时候，劲量不要使用箭头函数
+
+        let obj = {
+            uname: '阿飞',
+            age: 22,
+            fei: function () {
+                // console.log(this);
+                window.setInterval(() => {
+                    //this由于箭头函数没有作用域 所以直接指向上面
+                    console.log(this)
+                }, 1000);
+            }
+        }
+        obj.fei();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 一一对应
+        // let [a, b, c, d, e, f] = ['张飞', '赵云', '关羽', '张辽', '许褚', '典韦']
+        // console.log(a, b, c, d, e, f);
+
+        //变量多值少
+
+        // let [a, b, c, d, e, f, g, h, i, j, k, l] = ['张飞', '赵云', '关羽', '张辽', '许褚', '典韦'];
+        // console.log(a, b, c, d, e, f, g, h, i, j, k, l);
+        //输出结果 张飞 赵云 关羽 张辽 许褚 典韦 undefined undefined undefined undefined undefined undefined
+
+        // 变量少值多
+        // let [a, b, c] = ['张飞', '赵云', '关羽', '张辽', '许褚', '典韦'];
+        // console.log(a, b, c);
+        // 输出结果 张飞 赵云 关羽
+
+        // 按需取值
+        // let [, , a, b, , c] = ['张飞', '赵云', '关羽', '张辽', '许褚', '典韦']
+        // console.log(a, b, c);
+        //    输出结果 关羽 张辽 典韦
+
+        // 剩余值
+        // let [, a, b, ...c] = ['张飞', '赵云', '关羽', '张辽', '许褚', '典韦'];
+        // console.log(a, b, c);
+        //输出结果 赵云 关羽 (3) ['张辽', '许褚', '典韦']
+        // 复杂情况
+        let [, , a, b, [, c, d]] = ['张飞', '赵云', '关羽', '张辽', ['林冲', '鲁智深', '武松', '宋老板']]
+
+        console.log(a, b, c, d);
+    </script>
+</body>
+
+</html>
