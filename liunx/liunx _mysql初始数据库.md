@@ -82,12 +82,11 @@ flush privileges;
 ERROR 1396 (HY000): Operation ALTER USER failed for 'root'@'localhost'
 ~~~
 
-充值密码命令
+重置密码为空命令
 
 update user set authentication_string='' where user='root';
 
 flush privileges;
-
 
 
 
