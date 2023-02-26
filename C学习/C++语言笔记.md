@@ -239,8 +239,6 @@ int main()
 
 ### c语言 const概述
 
-
-
 会出现报错因为
 
 ~~~c
@@ -332,75 +330,6 @@ int main()
 ```
 
 ​	2.const修饰的变量有作用域，define不重视作用域，不能限定常量的使用范围
-
-### 引用
-
-1.引用是做什么：和C语言的指针一样的功能，并且使语法更加简洁
-
-2.引用是什么：引用是给空间取别名
-
-简单的
-
-~~~~c++
-void func(int &a)//int &a=a;
-{
-	a = 200;
-}
-
-void test02()
-{
-	int a = 10;
-	func(a);
-	cout << "a=" << a << endl;
-}
-~~~~
-
-引用的注意
-
-~~~
-	//1.引用创建时，必须初始化。
-	//int &pRef;err
-~~~
-
-```c
-//2.引用一旦初始化不能改变它的指向
-int a = 10;
-int &pRef = a;//给a的空间取别名为pRef;
-int b = 20;
-pRef = b;//赋值操作
-
-```
-
-2引用作为函数的返回值
-
-~~~C
-//2.引用作为函数的返回值
-int& func2()
-{
-	int b = 10;//注意1：不要返回局部变量的引用
-	int &p = b;
-	return p;
-}
-int &func3()
-{
-	static int b = 10;
-	return b;
-}
-void test02()
-{
-	int &q = func2();
-	q = 100;
-	cout << q << endl;
-
-	func2() = 200;
-	cout << q << endl;
-////---------上面的代码是错误，只是编译器没有检测出来
-	cout << "func2="<<func2() << endl;
-
-	func3() = 100;//注意2：如果要函数当左值，那么该函数必须返回引用
-	cout << "func3()=" << func3() << endl;
-}
-~~~
 
 
 
@@ -757,3 +686,164 @@ C++程序在执行时，将内存大方向划分为4个区域
 
 
 ### 程序运行后
+
+#### 栈
+
+由编译器自动分配释放,存放函数的参数值,局部变量等
+注意事项:不要返回局部变量的地址，栈区开辟的数据由编译器自动释放
+
+#### 堆
+
+由程序员分配释放,若程序员不释放,程序结束时由操作系统回收
+
+在C++中主要利用new在堆区开辟内存
+
+### new操作符
+
+C++中利用new操作符在堆区开辟数据
+堆区开辟的教据，由程序员手动开辟，手动释放，释放利用操作符deletel.
+
+#### 语法:new数据类型
+
+利用new创建的数据，会返回该数据对应的类型的指针
+
+~~~c++
+#include <iostream>
+using namespace std;
+int* func1() { 
+//用new关键字可以将数据开辟到堆区
+	//针本质也是局部变量，放在栈上，指针保存的数据是放在堆区
+
+	int* p = new int(10);
+
+
+	return p; //返回局部变量的地址
+
+}
+int main() {
+	int* p = func1();
+	cout << *p << endl;
+	cout << *p << endl;
+	cout << *p << endl;
+	cout << *p << endl;
+	cout << *p << endl;
+	delete p;
+    //cout << *p << endl;//报错读取访问权限冲突 报错
+	system("pause");
+}
+~~~
+
+#### 堆区开辟数组
+
+~~~c++
+/ /2、在堆区利用new开辟数组
+void test02()
+{
+//创建10整型数据的数组，在堆区
+int * arr = new int[10]; //10代表数组有10个元素
+//释放数组释放
+//释放数组的时候要加[]才可以
+delete[] arr;
+}
+
+~~~
+
+
+
+### 引用
+
+1.引用是做什么：和C语言的指针一样的功能，并且使语法更加简洁
+
+2.引用是什么：引用是给空间取别名
+
+![image-20230227001217287](C++语言笔记.assets/image-20230227001217287.png)
+
+简单的
+
+~~~~c++
+void func(int &a)//int &a=a;
+{
+	a = 200;
+}
+
+void test02()
+{
+	int a = 10;
+	func(a);
+	cout << "a=" << a << endl;
+}
+~~~~
+
+#### 引用的注意
+
+~~~c++
+//1.引用创建时，必须初始化。
+//int &pRef;err
+~~~
+
+```c
+//2.引用一旦初始化不能改变它的指向
+int a = 10;
+int &pRef = a;//给a的空间取别名为pRef;
+int b = 20;
+pRef = b;//赋值操作
+
+```
+
+#### 引用作为函数的返回值
+
+~~~C
+//2.引用作为函数的返回值
+int& func2()
+{
+	int b = 10;//注意1：不要返回局部变量的引用（因为存放在栈区 编译器差异可能导致错误）
+	int &p = b;
+	return p;
+}
+int &func3()
+{
+	static int b = 10;
+	return b;
+}
+void test02()
+{
+	int &q = func2();
+	q = 100;
+	cout << q << endl;
+
+	func2() = 200;
+	cout << q << endl;
+	//---------上面的代码是错误，只是编译器没有检测出来
+	cout << "func2="<<func2() << endl;
+
+	func3() = 100;//注意2：如果要函数当左值，那么该函数必须返回引用
+	cout << "func3()=" << func3() << endl;
+}
+~~~
+
+#### 引用的本质
+
+本质:引用的本质在c++内部实现是一个指针常量.
+
+~~~c++
+#include <iostream>
+using namespace std;
+
+void func(int& ref) { //发现是引用，转换为int* const ref = &a;
+	ref = 100; // ref是引用，转换为 * ref = 108
+};
+int main() {
+		int a = 10;
+		//自动转换为int* const ref = &a;指针常量是指针指向不可改，也说明为什么引用不可更改
+		int& ref = a;
+		ref = 20;//内部发现ref是引用，自动帮我们转换为:*ref = 20;
+		cout << "a :" << a << endl;
+		cout << "ref: " << ref << endl;
+		func(a);
+		return 0;
+}
+~~~
+
+如图所示
+
+![image-20230227002650178](C++语言笔记.assets/image-20230227002650178.png)
