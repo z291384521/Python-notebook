@@ -847,3 +847,43 @@ int main() {
 如图所示
 
 ![image-20230227002650178](C++语言笔记.assets/image-20230227002650178.png)
+
+### 类
+
+#### 访问权限
+
+公共权限public 		 成员类内可以访问类外可以访问
+
+保护权限protected	成员类内可以访问类外不可以访问
+
+私有权限private		 成员类内可以访问类外不可以访问
+
+#### struct和class区别
+
+
+struct默认权限是公共public
+
+class默认权限是私有private
+
+### 封装
+
+~~~c++
+#include<iostream>
+using namespace std;
+class Person {
+	public:
+	void setName(string name) {
+		m_NAME = name;
+	}
+	string getName() {
+		return m_NAME;
+	}
+	//
+	private:
+	// 姓名 
+	string m_NAME;
+};
+~~~
+
+优点1:将所有成员属性设置为私有，可以自己控制读写权限
+优点2:对于写权限 我们可以检测数据的有效性
