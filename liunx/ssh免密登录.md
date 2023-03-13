@@ -129,6 +129,6 @@ ssh localhost
 
 ```javascript
 [root@server ~]# mv key.pub authorized_keys
-[root@server ~]# chmod 700 .ssh
-[root@server ~]# chmod 600 authorized_keys
+[root@server ~]# chmod 700  /root/.ssh
+[root@server ~]# chmod 600  /root/.ssh/authorized_keys
 ```
