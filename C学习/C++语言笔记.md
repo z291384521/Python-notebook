@@ -887,3 +887,342 @@ class Person {
 
 优点1:将所有成员属性设置为私有，可以自己控制读写权限
 优点2:对于写权限 我们可以检测数据的有效性
+
+#### 构造函数析构函数
+
+~~~
+class Maker
+{
+public:
+	//构造函数的作用是初始化成员变量，是编译器去调用的
+	Maker()
+	{
+		a = 10;
+		cout << "构造函数" << endl;
+	}
+
+	//析构函数，在对象销毁前，编译器调用析构函数
+	~Maker()
+	{
+		cout << "析构函数" << endl;
+	}
+public:
+	int a;
+};
+~~~
+
+构造函数点和析构函数的注意
+
+​	1.构造函数和析构函数的权限必须是公有的
+
+​	2.构造函数可以重载
+
+​	3.构造函数没有返回值，不能用void,构造函数可以有参数，析构函数没有返回值，不能用void,没有参数
+
+​	4.有对象产生必然会调用构造函数，有对象销毁必然会调用析构函数。有多少个对象产生就会调用多少次构造函数，有多少个对象销毁就会调用多少次析构函数
+
+#### 编译器提供了默认的拷贝构造函数
+
+~~~c++
+class Maker2
+{
+public:
+	Maker2()
+	{
+		cout << "无参构造函数" << endl;
+		a = 20;
+	}
+	//编译器提供了默认的拷贝构造函数
+	//Maker2(const Maker2 &m)
+	//{
+	//	//默认拷贝构造函数进行了成员变量的简单拷贝
+	//	a = m.a;
+	//}
+
+	//打印函数
+	void printMaker()
+	{
+		cout << "a=" << a << endl;
+	}
+private:
+	int a;
+};
+
+
+void test02()
+{
+	Maker2 m1;
+	m1.printMaker();
+
+	
+	Maker2 m2(m1);
+	m2.printMaker();
+}
+~~~
+
+#### 拷贝构造函数中形参要用引用
+
+~~~
+
+	//如果拷贝构造函数中的形参不是引用
+	/*
+	Maker3(const Maker3 m)//const Maker3 m=m1;   const Maker3 m(m1);
+	{
+		cout << "拷贝构造函数" << endl;
+	}
+
+	1.Maker3 m2(m1);
+	2.const Maker3 m=m1;
+	3.const Maker3 m(m1);
+	4.const Maker3 m=m1;
+	5.进入死循环
+	*/
+~~~
+
+拷贝函数
+
+~~~c++
+	Maker m;//调用无参构造函数
+	Maker m1(10);//调用有参构造
+	Maker m2(m1);//调用拷贝构造
+
+	//不常用
+	Maker m4 = Maker(10);//调用的是有参构造函数
+	Maker m3 = m2;//调用拷贝构造
+	cout << "=====" << endl;
+	Maker m5 = 10;//Maker m5=Maker(10);
+	cout << "=======" << endl;
+
+	Maker m6;
+	m6 = m5;//赋值操作
+~~~
+
+#### 拷贝构造函数调用的时机
+
+~~~c++
+class Maker
+{
+public:
+	Maker()
+	{
+		cout << "无参构造函数" << endl;
+	}
+	Maker(int a)
+	{
+		cout << "有参构造函数" << endl;
+	}
+	Maker(const Maker& maker)
+	{
+		cout << "拷贝构造函数" << endl;
+	}
+	~Maker()
+	{
+		cout << "析构函数" << endl;
+	}
+};
+//1 对象以值方式传递给函数
+void func(Maker m) {
+
+};
+
+void test01() {
+	Maker m1;
+	func(m1);
+};
+//2.用一个已有的对象去初始化另一个对象
+void test02()
+{
+	Maker m1;
+	Maker m2(m1);
+}
+//3 函数的局部对象以值的方式从函数返回，
+//vs Debug(调试)模式下，会调用拷贝构造，vs Release（发行）模式下不会调用拷贝构造，qt也不调用
+
+Maker func2()
+{
+	//局部对象
+	Maker m;
+	cout << "局部对象的地址:" << &m << endl;
+
+	return m;
+}
+
+void test03()
+{
+
+	Maker m1 = func2();
+
+	cout << "m1对象的地址：" << &m1 << endl;
+}
+~~~
+
+#### 构造函数的调用规则
+
+1.如果程序员提供了有参构造，那么编译器不会提供默认构造函数，但是会提供默认的拷贝构造
+
+```
+void test01()
+{
+	//Maker m;//err
+
+	//Maker m(10);//调用有参构造
+	//Maker m2(m);//调用默认的拷贝构造
+}
+```
+
+2.如果程序员提供了拷贝构造函数，那么编译器不会提供默认的构造函数和默认的拷贝构造函数
+
+```
+void test02()
+{
+	//Maker m;
+}
+```
+
+
+
+#### 初始化列表
+
+1.初始化列表是干什么用的，指定调用成员对象的某个构造函数
+
+2.初始化列表只能写在构造函数
+
+3.如果使用了初始化列表，那么所有的构造函数都要写初始化列表
+
+4.如果有多个对象需要指定调用某个构造函数，用逗号隔开
+
+5.可以使用对象的构造函数传递数值给成员对象的变量
+
+```
+class BMW2
+{
+public:
+
+	BMW2(int a)
+	{
+		cout << "BMW2有参构造" << a << endl;
+	}
+
+	~BMW2()
+	{
+		cout << "BMW2析构" << endl;
+	}
+};
+
+class Buick2
+{
+public:
+	Buick2(int b,int c)
+	{
+		cout << "Buick2构造" << endl;
+	}
+
+	~Buick2()
+	{
+		cout << "Buick2析构" << endl;
+	}
+};
+
+class Maker2
+{
+public:
+	//初始化列表
+	//注意1：初始化列表只能写在构造函数
+	/*Maker2() :bmw(10)
+	{
+		cout << "Maker2构造" << endl;
+	}*/
+	//如果有多个对象需要指定调用某个构造函数，用逗号隔开
+	Maker2(int a,int b,int c) :bmw(a), bui(b,c)
+	{
+		cout << "Maker2构造" << endl;
+	}
+	//注意2:如果使用了初始化列表，那么所有的构造函数都要写初始化列表
+	Maker2(const Maker &m2) :bmw(40), bui(10,20)
+	{
+
+	}
+	/*void printMaker2() : bmw(10)
+	{
+
+	}*/
+
+	~Maker2()
+	{
+		cout << "Maker2析构" << endl;
+	}
+private:
+
+	Buick2 bui;//成员对象
+	BMW2 bmw;//成员对象
+};
+
+//初始化列表是调用成员对象的指定构造函数
+void test02()
+{
+	Maker2 m(30,10,20);
+}
+```
+
+### 对象的深浅拷贝（重点难点）
+
+1.默认的拷贝构造函数进行了简单的赋值操作（浅拷贝）
+
+2.浅拷贝的问题
+
+同一块空间被释放两次
+
+![image-20230228234412023](C++语言笔记.assets/image-20230228234412023.png)
+
+```
+class Student
+{
+public:
+	Student(const char *name, int Age)
+	{
+		pName = (char*)malloc(strlen(name) + 1);
+		strcpy(pName, name);
+		age = Age;
+	}
+
+	~Student()
+	{
+		cout << "析构函数" <<endl;
+		if (pName != NULL)
+		{
+			free(pName);
+			pName = NULL;
+		}
+	}
+public:
+	char *pName;
+	int age;
+};
+
+void test02()
+{
+	Student s1("小花", 18);
+	Student s2(s1);
+
+	cout << "s1 Name=" << s1.pName << " s1 age=" << s1.age << endl;
+	cout << "s2 Name=" << s2.pName << " s2 age=" << s2.age << endl;
+}
+```
+
+3.深拷贝解决浅拷贝问题
+
+自己写拷贝构造函数
+
+```
+	//深拷贝
+	Student(const Student &stu)
+	{
+		cout << "自己的拷贝构造函数" << endl;
+		//1.申请空间
+		pName = (char*)malloc(strlen(stu.pName) + 1);
+		//2.拷贝数据
+		strcpy(pName, stu.pName);
+		age = stu.age;
+	}
+```
+
