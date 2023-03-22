@@ -182,18 +182,86 @@ public interface IEnumerator
 
 一个要实现GetEnumerator();
 
- 先说IEnumerable接口，我们能看到它需要实现一个GetEnumerator方法，而这个方法的返回值正好是 IEnumerator 类型。在IEnumerator接口中，我们能看到有一个属性（Current），两个方法（MoveNext Reset）要实现，
+ 先说IEnumerable接口，我们能看到它需要实现一个GetEnumerator方法，而这个方法的返回值正好是 IEnumerator 类型。在IEnumerator接口中，我们能看到有一个属性（Current），两个方法（MoveNext Reset）
+
+Current表示当前项的内容，因为这里IEnumerator 不是泛型的所以，Current的类型为object。
+
+MoveNext方法，**他返回一个bool类型的值，这个方法是个关键，因为这个方法是来判断迭代或者说循环遍历是否要往下执行的**，同时一般会在这个方法中进行数组下标值的增加。而在Current中我们一般是不处理下标值的增减，而是通过下标值和数组返回当前对应的值。
+
+Reset方法，一般是在这里重置下标，不过一般这个方法使用的比较少，一般用来第一次调用时候重置下标记
 
 
 
-//迭代器(iterator) 有时又称光标(cursor)
-//是程序设计的软件设计模式
-//迭代器模式提供-一个方法顺序访问一个聚合对象中的各个元素
-//而又不暴露其内部的标识
-//在表现效果上看
-//是可以在容器对象(例如链表或数组)上遍历访间的接口 1
-//设计人员无需关心容器对象的内存分配的实现细书
-//可以用foreach遍历的类，都是实现了迭代器的
+
+
+要实现所以写一个能被foreach遍历的类
+
+![image-20230322235227733](img/c#_foreach_协程_迭代器.assets/image-20230322235227733.png)
+
+foreach执行顺序本质是
+
+    
+            // 先获取in后面这个对象的IEnumerator
+            // 会调用对象其中的GetEnumerator方法来获取.
+            // 执行得到这个IEnumerator对象中的MoveNext方法
+           //  只要MoveNext方法的 返回值时true就会去得到current
+            // 然后复制给item
+
+所以代码如下
+
+~~~c#
+class CustomList : IEnumerable, IEnumerator
+    {
+
+        private int[] list;
+        //起始位置是-1
+        private int position = -1;
+        public CustomList()
+        {
+            list = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        }
+
+        public object Current
+        {
+            get { return list[position]; }
+
+        }
+
+        #region IEnumerable实现的返回
+        //返回一个IEnumerator
+        public IEnumerator GetEnumerator()
+        {
+            //自己实现了接口本身就是一个IEnumerator
+            Reset();
+            return this;
+        }
+        #endregion 
+
+        public bool MoveNext()
+        {
+            position++;
+            //判断position合不合法
+            return position < list.Length;
+        }
+
+        public void Reset()
+        {
+            //第一次进行复原
+            //要不然第二次就不会成功调用
+            position= -1;
+        }
+    }
+~~~
+
+
+
+
+
+
+
+
+
+
 
 
 
