@@ -1,0 +1,31 @@
+<!-- 定义了 xml 文件的版本和使用编码，这是每个 xml 文件固定写法 -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 引用布局组件，后面我们会介绍 Android 的 7 大布局 -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    //xmlns:android 、 xmlns:app 、 xmlns:tools 命名空间声明
+    //使用 alt + / 提示和补全属性，其实输入 android 的过程中就会自动提示
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    //android:layout_width 和 android:layout_width 属性
+    //match_parent	跟父控件或布局同宽或同高
+    //fill_parent	跟父控件或布局同宽或同高
+    //wrap_content	宽或高刚好显示组件内容的大
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    这个属性只针对 Android Studio 编辑器有用，不会打包进 .apk
+    用于设置该布局对应的 Activity 上下文，如果在 AndroidManifest.xml 为该 Activity 
+    设置了主题(theme)，那么可视化布局编辑器也会使用这个主题
+    tools:context="cn.twle.android.helloworld.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        //显示内容
+        android:text="Hello World!"
+        //用来约束控件的位置的，这四个属性的意思是期待控件布局紧贴 ConstraintLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

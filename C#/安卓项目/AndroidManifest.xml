@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+manifest定义了 AndroidManifest.xml 配置文件的根节点，这是固定的写法
+xmlns:android="http://schemas.android.com/apk/res/android"引用了 android 这个命名空间，我们就可以做下面的事情了
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package定义了我们应用程序所在的 Java 包，Android 会从该包下查找 Java 包
+    package="cn.twle.android.helloworld">
+    application 应用程序 级别的属性
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        //声明一个 activity ，引用 MainActivity ，也就是 package 属性下的相应文件. 号就是代表 package 声明的包
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                这两个定义了程序的入口是 MainActivity
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
